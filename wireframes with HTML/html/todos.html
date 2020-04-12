@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo's</title>
+</head>
+<body>
+    <nav>
+        <a>ToDoList</a>
+        <a href="#">Todo's</a>
+        <a href="#">Habits</a>
+        <a href="#">Trash</a>
+        <a href="#">Sign out</a>
+    </nav>
+
+    <!-- type of container would be chosen in css depends on screen size -->
+    <div class="todo-container" id="desktop">
+        <table>
+            <tr>
+                <td></td>
+                <td><div>Important</div></td>
+                <td><div>Not Important</div></td>
+            </tr>
+
+            <tr>
+                <td><div>Urgent</div></td>
+                <td>
+                    <!-- scroll-bar and fixed height of each cell would be added in css -->
+                    <div>
+                        <div>Todo1</div>
+                        <div>Todo2</div>
+                        <div>Todo3</div>
+                    </div>
+                </td>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><div>Not Urgent</div></td>
+                <td>
+                    <div></div>
+                </td>
+                <td>
+                    <div><div>Todo3</div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="todo-container" id="phone">
+        <table>
+            <tr>
+                <td><div>Important, Urgent</div></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <div>Todo1</div>
+                        <div>Todo2</div>
+                        <div>Todo3</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td><div>Not Important, Urgent</div></td>
+            </tr>
+            <tr>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td><div>Important, Not Urgent</div></td>
+            </tr>
+            <tr>
+                <td>
+                    <div></div>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td><div>Not Important, Not Urgent</div></td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <div>Todo4</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <a href="#">Add Todo</a>
+</body>
+</html>

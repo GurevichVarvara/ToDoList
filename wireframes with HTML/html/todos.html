@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo's</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <nav>
+        <a>
+            <i class="material-icons">done_all</i>
+            ToDoList
+        </a>
+        <a href="#">Todo's</a>
+        <a href="#">Habits</a>
+        <a href="#">Trash</a>
+        <a href="#">Sign out</a>
+    </nav>
+
+    <main>
+        <div class="todo-container">
+
+            <!-- would put combinations of two titles in one cell for phone-size variant -->
+            
+            <div class="todo-title" id="important">
+                <p>Important</p>
+            </div>
+            <div class="todo-title" id="not-important">
+                <p>Not Important</p>
+            </div>
+            <div class="todo-title" id="urgent">
+                <p>Urgent</p>
+            </div>
+            <div class="todo-title" id="not-urgent">
+                <p>Not Urgent</p>
+            </div>
+
+            <section class="todo-category" id="important-urgent">
+                <div>
+                    <h2>Todo 1</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button>
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+
+                <div>
+                    <h2>Todo 2</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button> 
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+
+                <div>
+                    <h2>Todo 3</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button> 
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="todo-category" id="not-important-urgent">
+            </section>
+
+            <section class="todo-category" id="important-not-urgent">
+            </section>
+
+            <section class="todo-category" id="not-important-not-urgent">
+                <div>
+                    <h2>Todo 4</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button> 
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <a href="#">Add Todo</a>
+    </main>
+</body>
+</html>

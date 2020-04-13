@@ -18,74 +18,73 @@
     </nav>
 
     <main>
-        <!-- type of container would be chosen in css depends on screen size -->
-        <table class="todo-container" id="desktop">
-            <tr>
-                <td></td>
-                <td>Important</td>
-                <td>Not Important</td>
-            </tr>
+        <div class="todo-container">
 
-            <tr>
-                <td>Urgent</td>
-                <td>
-                    <!-- scroll-bar and fixed height of each cell would be added in css -->
-                    <div>
-                        <h2>Todo 1</h2>
+            <!-- would put combinations of two titles in one cell for phone-size variant -->
+            
+            <div class="todo-title" id="important">
+                <p>Important</p>
+            </div>
+            <div class="todo-title" id="not-important">
+                <p>Not Important</p>
+            </div>
+            <div class="todo-title" id="urgent">
+                <p>Urgent</p>
+            </div>
+            <div class="todo-title" id="not-urgent">
+                <p>Not Urgent</p>
+            </div>
 
-                        <button>
-                            <i class="material-icons">done_outline</i>
-                        </button>
-                        
-                        <button>
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
+            <section class="todo-category" id="important-urgent">
+                <div>
+                    <h2>Todo 1</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button>
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
 
-                    <div>
-                        <h2>Todo 2</h2>
+                <div>
+                    <h2>Todo 2</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button> 
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
 
-                        <button>
-                            <i class="material-icons">done_outline</i>
-                        </button>
-                        
-                        <button>
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
+                <div>
+                    <h2>Todo 3</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button> 
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </section>
 
-                    <div>
-                        <h2>Todo 3</h2>
+            <section class="todo-category" id="not-important-urgent">
+            </section>
 
-                        <button>
-                            <i class="material-icons">done_outline</i>
-                        </button>
-                        
-                        <button>
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
-                </td>
-                <td></td>
-            </tr>
+            <section class="todo-category" id="important-not-urgent">
+            </section>
 
-            <tr>
-                <td>Not Urgent</td>
-                <td></td>
-                <td>
-                    <div>
-                        <h2>Todo 4</h2>
-                        <button>
-                            <i class="material-icons">done_outline</i>
-                        </button>
-                        
-                        <button>
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        </table>
+            <section class="todo-category" id="not-important-not-urgent">
+                <div>
+                    <h2>Todo 4</h2>
+                    <button>
+                        <i class="material-icons">done_outline</i>
+                    </button> 
+                    <button>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </section>
+        </div>
 
         <a href="#">Add Todo</a>
     </main>

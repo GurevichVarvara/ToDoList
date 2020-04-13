@@ -18,6 +18,33 @@
     </nav>
 
     <main>
+        <form>
+            <p>Please select what you category want to display</p>
+            <div>
+                <input type="radio" id="category_of_items_1"
+                 name="type_of_items" value="todos">
+                <label for="category_of_items_1">Todo's</label>
+
+                <input type="radio" id="category_of_items_2"
+                 name="type_of_items" value="habits">
+                <label for="category_of_items_2">Habits</label>
+
+                <input type="radio" id="category_of_items_3"
+                 name="type_of_items" value="all">
+                <label for="category_of_items_3">All</label>
+            </div>
+
+            <p>Please select the sorting method</p>
+            <div>
+                <input type="radio" id="sorting_method_1"
+                 name="sorting_methods" value="new-old">
+                <label for="sorting_method_1">Recently added first</label>
+
+                <input type="radio" id="sorting_method_1"
+                 name="sorting_methods" value="old-new">
+                <label for="sorting_method_1">Old first</label>
+            </div>
+        </form>
 
         <div class="trash-container">
             <div class="trash-item">

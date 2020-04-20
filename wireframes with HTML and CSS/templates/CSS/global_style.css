@@ -39,19 +39,24 @@ body, html {
 	margin-left: 10px;
 }
 
-#desctop_navbar_buttons_login {
-	margin-left: auto;
-	float: right;
+#desctop_navbar_buttons {
+	margin-left: 50px;
 	padding: 25px 10px;
 }
 
-#desctop_navbar_buttons_login > a {
+#desctop_navbar_buttons_login {
+	padding: 25px 10px;
+	margin-left: auto;
+	float: right;
+}
+
+#desctop_navbar_buttons_login > a, #desctop_navbar_buttons > a {
 	padding: 10px;
 	text-decoration: none;
 	color: black;
 }
 
-#desctop_navbar_buttons_login > a:hover {
+#desctop_navbar_buttons_login > a:hover, #desctop_navbar_buttons > a:hover {
   	color: rgba(172, 194, 32, 1);
 }
 

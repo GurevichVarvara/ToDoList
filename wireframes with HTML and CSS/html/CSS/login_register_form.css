@@ -1,0 +1,58 @@
+.login-form {
+	margin-top:35vh;
+	text-align: center;
+}
+
+.username_field > label, .password_field > label {
+	font-size: 30px;
+	width: 180px;
+	display: inline-block;
+}
+
+.username_field > input, .password_field > input {
+	font-size: 30px;
+	width: 342px;
+	height: 48px;
+	background: rgba(221, 76, 14, 0.42);
+	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+	border-width: 0;
+	margin: 10px;
+}
+
+.login-form > input {
+	margin-top: 30px;
+	padding: 5px;
+	background-color: inherit;
+	border-radius: 8px;
+	border: none; 
+	font-size: 30px;
+}
+
+.login-form > input:hover {
+	background-color: rgba(172, 194, 32, 1);
+}
+
+
+@media (max-width: 980px) {
+
+.login-form {
+	margin-top:30vh;
+}
+
+.username_field > input, .password_field > input {
+	font-size: 50px;
+	width: 450px;
+	height: 70px;
+}
+
+.username_field > label, .password_field > label {
+	font-size: 50px;
+	width: 280px;
+}
+
+.login-form > input {
+	font-size: 50px;
+}
+
+}

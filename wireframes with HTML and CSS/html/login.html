@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
-    <link rel="stylesheet" href="CSS/global_style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/global_style.css">
+    <link rel="stylesheet" href="CSS/login_register_form.css">
 </head>
 <body>
-    <nav>
-        <a>
-            <i class="material-icons">done_all</i>
-            ToDoList
+    <div class="navbar">
+        <a id="app_logo">
+            <i class="material-icons md-48">done_all</i>
+            <p>TODO List</p>
         </a>
-        <a href="#">Log in</a>
-        <a href="#">Sign in</a>
-    </nav>
+        
+        <div id="desctop_navbar_buttons">
+            <a href="#">Log in</a>
+            <a href="#">Sign up</a>
+        </div>
+        
+        <a id="phone_navbar_button"><i class="material-icons md-48">reorder</i></a>
+    </div>
 
-        <form class="login-form" method="post">
-            <div class="username_field">
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
-            </div>
+    <form class="login-form" method="post">
+        <div class="username_field">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+        </div>
 
-            <div class="password_field">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-            </div>
+        <div class="password_field">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
             
-            <input type="submit" value="Log in">
-        </form>
+        <input type="submit" value="Log in">
+    </form>
 </body>
 </html>

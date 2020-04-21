@@ -20,19 +20,6 @@
 	margin: 10px;
 }
 
-.login-form > input {
-	margin-top: 30px;
-	padding: 5px;
-	background-color: inherit;
-	border-radius: 8px;
-	border: none; 
-	font-size: 30px;
-}
-
-.login-form > input:hover {
-	background-color: rgba(172, 194, 32, 1);
-}
-
 
 
 
@@ -51,10 +38,6 @@
 	.username_field > label, .password_field > label {
 		font-size: 50px;
 		width: 280px;
-	}
-
-	.login-form > input {
-		font-size: 50px;
 	}
 
 }

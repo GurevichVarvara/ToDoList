@@ -1,0 +1,84 @@
+main {
+	padding-left: 10%;
+	padding-right: 10%;
+	text-align: center;
+}
+
+.button_to_submit {
+	background: rgba(0, 0, 0, 0);
+	margin-bottom: 2vh;
+}
+
+.trash-container {
+	margin-top: 5vh;
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+.trash-item {
+	background: rgba(221, 76, 14, 0.42);
+	border-radius: 11px;
+	padding: 20px 20px;
+	margin: 10px 10px;
+	display: grid;
+	grid-template-columns: 5fr 3fr 1fr 1fr;
+	text-align: center;
+}
+
+.trash-item-name, .trash-item-category {
+	font-size: 40px;
+} 
+
+.trash-item-category {
+	margin-right: auto;
+	float: left;
+	opacity: 0.7;
+}
+
+.trash-item-back-button, .trash-item-delete-button {
+	margin: 5px 5px;
+	padding: 7px 7px;
+	border-radius: 13px;
+	font-size: 15px;
+}
+
+.trash-item-back-button {
+	background: #2A85DA;
+	border: rgba(12, 61, 105, 1);
+}
+
+.trash-item-delete-button {
+	background: #DA342A;
+	border: rgba(105, 29, 12, 1);
+}
+
+
+.trash-item-back-button:hover, .trash-item-delete-button:hover {
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.select_trash_item_type_form {
+	margin-top: 5vh;
+	padding: 10px 10px;
+	border-radius: 13px;
+	background: rgba(221, 76, 14, 0.2);
+}
+
+.select_trash_item_type_form > p {
+	margin-top: 3vh;
+	margin-bottom: 0.5vh;
+	font-size: 20px;
+}
+
+.part_date_of_select_form > div, .part_item_type_of_select_form > div {
+	display: inline-block;
+}
+
+.part_date_of_select_form > div > label, .part_item_type_of_select_form > div > label {
+	margin-left: 10px;
+}
+
+.part_item_type_of_select_form > #habits_section, .part_item_type_of_select_form > #all_section, .part_date_of_select_form > #old-new_section {
+	margin-left: 60px;
+}
+

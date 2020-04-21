@@ -27,6 +27,8 @@
     </div>
 
     <main id="main_form">
+        <a class="add_todo_button" id="up" href="#">Add Todo</a>
+
         <div class="todo-container">
             
             <div class="todo-title" id="important">
@@ -40,6 +42,19 @@
             </div>
             <div class="todo-title" id="not-urgent">
                 <p>Not Urgent</p>
+            </div>
+
+            <div class="todo-title-phone" id="important-urgent">
+                <p>Important, Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="not-important-urgent">
+                <p>Not Important, Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="important-not-urgent">
+                <p>Important, Not Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="not-important-not-urgent">
+                <p>Not Important, Not Urgent</p>
             </div>
 
             <section class="todo-category" id="important-urgent">
@@ -111,23 +126,20 @@
             </section>
         </div>
 
-        <a class="add_todo_button" href="#">Add Todo</a>
+        <a class="add_todo_button" id="down" href="#">Add Todo</a>
     </main>
 
     <script>
         function get_drop_login_menu() {
             var buttons = document.getElementById("desctop_navbar_buttons");
             var navbar = document.getElementById("navbar");
-            var main_form = document.getElementById("main_form");
 
             if (buttons.style.display === "grid") {
                 buttons.style.display = "none";
                 navbar.style.height = "10vh";
-                main_form.style.marginTop = "12vh";
             } else {
                 buttons.style.display = "grid";
                 navbar.style.height = "17vh";
-                main_form.style.marginTop = "5vh";
             }
         }
     </script>

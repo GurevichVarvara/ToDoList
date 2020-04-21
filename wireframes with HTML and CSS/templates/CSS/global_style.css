@@ -40,6 +40,7 @@ body, html {
 }
 
 #desctop_navbar_buttons {
+	display: inline-block;
 	margin-left: 50px;
 	padding: 25px 10px;
 }
@@ -63,6 +64,9 @@ body, html {
 #phone_navbar_button {
 	display: none;
 }
+
+
+
 
 
 @media (max-width: 980px) {

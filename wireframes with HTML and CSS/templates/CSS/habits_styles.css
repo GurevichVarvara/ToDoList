@@ -89,3 +89,50 @@ main {
 .habit-delete-button > i {
 	color: rgba(88, 10, 10, 1);
 }
+
+
+@media (max-width: 980px) {
+	main {
+		margin-top: 5vh;
+	}
+
+	.habits-container {
+		margin-top: 3vh;
+	}
+
+	.habit-category {
+		margin-top: 60px;
+	}
+
+	.habit-category > .bg {
+		height: 3vh;
+		width: 15vw;
+	}
+
+	.habits-container {
+		grid-template-columns: 1fr;
+	}
+
+	.habit-done-button, .habit-delete-button {
+		width: 13vw;
+	}
+
+	.habit-done-button > i, .habit-delete-button > i {
+		font-size: 50px;
+	}
+
+	.habit-category > .habit-categoty-text {
+		margin-top: -2.9vh;
+		font-size: 30px;
+		color: black;
+	}
+
+	.habit-title {
+		font-size: 70px;
+		padding-top: 30px;
+	}
+
+	.completed-habit-text {
+		font-size: 30px;
+	}
+}

@@ -26,7 +26,7 @@
         <button id="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
     </div>
 
-    <main>
+    <main id="main_form">
         <div class="todo-container">
             
             <div class="todo-title" id="important">
@@ -113,5 +113,23 @@
 
         <a class="add_todo_button" href="#">Add Todo</a>
     </main>
+
+    <script>
+        function get_drop_login_menu() {
+            var buttons = document.getElementById("desctop_navbar_buttons");
+            var navbar = document.getElementById("navbar");
+            var main_form = document.getElementById("main_form");
+
+            if (buttons.style.display === "grid") {
+                buttons.style.display = "none";
+                navbar.style.height = "10vh";
+                main_form.style.marginTop = "12vh";
+            } else {
+                buttons.style.display = "grid";
+                navbar.style.height = "17vh";
+                main_form.style.marginTop = "5vh";
+            }
+        }
+    </script>
 </body>
 </html>

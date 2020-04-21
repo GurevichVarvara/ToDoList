@@ -1,0 +1,91 @@
+main {
+	margin-top: 7vh;
+}
+
+.habits-container {
+	margin-top: 7vh;
+	margin-right: 10%;
+	margin-left: 10%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.habit, .completed-habit {
+	height: 30vh;
+	width: auto;
+	border-radius: 37px;
+	margin: 30px;
+}
+
+.habit {
+	background: rgba(221, 76, 14, 0.42);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.completed-habit {
+	background: rgba(221, 76, 14, 0.23);
+}
+
+.completed-habit-text {
+	height: 40%;
+	width: 70%;
+	margin-left: 15%;
+	padding-top: 5%;
+	text-align: center;
+}
+
+.habit-title {
+	font-size: 30px;
+	height: 30%;
+	padding-top: 20px;
+}
+
+.habit-category {
+	margin-top: 20px;
+	height: 30%;
+	text-align: center;
+}
+
+.habit-category > .bg {
+	height: 3vh;
+	width: 5vw;
+	filter: blur(4px);
+	margin: auto;
+	background: rgba(18, 50, 165, 0.7);
+	z-index: -1;
+}
+
+.habit-category > .habit-categoty-text {
+	margin-top: -3.2vh;
+	z-index: 3;
+	color: black;
+}
+
+.habit-done-button, .habit-delete-button {
+	height: 5vh;
+	width: 3vw;
+	border-radius: 30px;
+	margin: 0 10px;
+}
+
+.habit-done-button:hover, .habit-delete-button:hover {
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.habit-done-button {
+	background: rgba(14, 221, 35, 0.44);
+	border-color: rgba(3, 123, 37, 0.7);
+}
+
+.habit-delete-button {
+	background: rgba(88, 10, 10, 0.4);
+	border-color: rgba(88, 10, 10, 0.7);
+}
+
+.habit-done-button > i {
+	color: rgba(3, 123, 37, 1);
+}
+
+.habit-delete-button > i {
+	color: rgba(88, 10, 10, 1);
+}

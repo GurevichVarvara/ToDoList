@@ -4,60 +4,93 @@
     <meta charset="UTF-8">
     <title>habits</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/global_style.css">
+    <link rel="stylesheet" href="CSS/todo_styles.css">
+    <link rel="stylesheet" href="CSS/habits_styles.css">
+
+    <script type="text/javascript" src="JS/drop-down_main_menu"></script>
 </head>
 <body>
-    <nav>
-        <a>
-            <i class="material-icons">done_all</i>
-            ToDoList
+    <div class="navbar" id="navbar">
+        <a id="app_logo">
+            <i class="material-icons md-48">done_all</i>
+            <p>TODO List</p>
         </a>
-        <a href="#">Todo's</a>
-        <a href="#">Habits</a>
-        <a href="#">Trash</a>
-        <a href="#">Sign out</a>
-    </nav>
+        
+        <div id="desctop_navbar_buttons">
+            <a href="#">Todo's</a>
+            <a href="#">Habits</a>
+            <a href="#">Trash</a>
+            <a href="#">Sign out</a>
+        </div>
+        
+        <button id="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
+    </div>
 
     <main>
-        <a href="#">Add Habit</a>
+        <a class="add_todo_button" href="#">Add Habit</a>
 
-        <!-- container's elements would be displayed either horizontally or vertically depends on screen size -->
         <div class="habits-container">
-            <div class="task">
-                <h2>Task 1</h2>
+            <div class="habit">
+                <p class="habit-title">Task 1</p>
 
-                <div>easy</div>
+                <div class="habit-category">
+                    <div class="bg"></div>
+                    <div class="habit-categoty-text">easy</div>
+                </div>
 
-                <button>
+                <button class="habit-done-button">
                     <i class="material-icons">done_outline</i>
                 </button>
                         
-                <button>
+                <button class="habit-delete-button">
                     <i class="material-icons">delete</i>
                 </button>
             </div>
-            <div class="task">
-                <h2>Task 2</h2>
 
-                <div>hard</div>
+            <div class="completed-habit">
+                <p class="habit-title">Task 2</p>
 
-                <button>
-                    <i class="material-icons">done_outline</i>
-                </button>
-                        
-                <button>
+                <div class="completed-habit-text">
+                    <p>You can take a break from this task for two days</p>
+                </div>
+
+                <button class="habit-delete-button">
                     <i class="material-icons">delete</i>
                 </button>
             </div>
-            <div class="task">
-                <h2>Task 3</h2>
+            <div class="habit">
+                <p class="habit-title">Task 3</p>
 
-                <div>medium</div>
+                <div class="habit-category">
+                    <div class="bg"></div>
+                    <div class="habit-categoty-text">medium</div>
+                </div>
                 
-                <button>
+                <button class="habit-done-button">
                     <i class="material-icons">done_outline</i>
                 </button>
                         
-                <button>
+                <button class="habit-delete-button">
+                    <i class="material-icons">delete</i>
+                </button>
+            </div>
+
+            <div class="habit">
+                <p class="habit-title">Task 4</p>
+
+                <div class="habit-category">
+                    <div class="bg"></div>
+                    <div class="habit-categoty-text">medium</div>
+                </div>
+                
+                <button class="habit-done-button">
+                    <i class="material-icons">done_outline</i>
+                </button>
+                        
+                <button class="habit-delete-button">
                     <i class="material-icons">delete</i>
                 </button>
             </div>

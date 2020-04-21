@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="CSS/global_style.css">
     <link rel="stylesheet" href="CSS/todo_and_habits_styles.css">
+
+    <script type="text/javascript" src="JS/drop-down_todo_menu"></script>
 </head>
 <body>
     <div class="navbar" id="navbar">
@@ -128,20 +130,5 @@
 
         <a class="add_todo_button" id="down" href="#">Add Todo</a>
     </main>
-
-    <script>
-        function get_drop_login_menu() {
-            var buttons = document.getElementById("desctop_navbar_buttons");
-            var navbar = document.getElementById("navbar");
-
-            if (buttons.style.display === "grid") {
-                buttons.style.display = "none";
-                navbar.style.height = "10vh";
-            } else {
-                buttons.style.display = "grid";
-                navbar.style.height = "17vh";
-            }
-        }
-    </script>
 </body>
 </html>

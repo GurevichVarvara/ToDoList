@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="CSS/global_style.css">
     <link rel="stylesheet" href="CSS/login_register_form.css">
+
+    <script type="text/javascript" src="JS/drop-down_login_menu"></script>
 </head>
 <body>
     <div class="navbar" id="navbar">
@@ -37,23 +39,5 @@
             
         <input type="submit" value="Log in">
     </form>
-
-    <script>
-        function get_drop_login_menu() {
-            var buttons = document.getElementById("desctop_navbar_buttons_login");
-            var navbar = document.getElementById("navbar");
-            var login_form = document.getElementById("login-form");
-
-            if (buttons.style.display === "grid") {
-                buttons.style.display = "none";
-                navbar.style.height = "10vh";
-                login_form.style.marginTop = "30vh";
-            } else {
-                buttons.style.display = "grid";
-                navbar.style.height = "17vh";
-                login_form.style.marginTop = "23vh";
-            }
-        }
-    </script>
 </body>
 </html>

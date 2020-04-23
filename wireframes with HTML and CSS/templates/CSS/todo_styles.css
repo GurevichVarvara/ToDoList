@@ -1,12 +1,12 @@
 main {
 	text-align: center;
 	display: block;
-	margin-top: 5vh;
+	margin-top: 40px;
 }
 
 
 .todo-container {
-	margin-bottom: 5vh;
+	margin-bottom: 40px;
 	margin-right: 10%;
 	margin-left: 10%;
 	display: grid;
@@ -84,7 +84,7 @@ main {
 }
 
 #important.todo-title, #not-important.todo-title {
-	height: 9vh;
+	height: 65px;
 	padding: 3%; 
 }
 
@@ -167,11 +167,11 @@ main {
 @media (max-width: 980px) {
 
 	main {
-		margin-top: 3vh;
+		margin-top: 50px;
 	}
 
 	.todo-container {
-		margin-top: 3vh;
+		margin-top: 50px;
 		grid-template-columns: 1fr;
 		background: rgba(209, 205, 185, 1);
 		border: none;
@@ -185,13 +185,13 @@ main {
 		display: block;
 		background: rgba(221, 76, 14, 0.42);
 		text-align: center;
-		height: 7vh;
+		height: 130px;
 		font-size: 40px;
 		padding: 5%;
 	}
 
 	#not-important-urgent.todo-title-phone, #important-not-urgent.todo-title-phone, #not-important-not-urgent.todo-title-phone {
-		margin-top: 5vh;
+		margin-top: 80px;
 	}
 
 	#important-urgent.todo-title-phone {

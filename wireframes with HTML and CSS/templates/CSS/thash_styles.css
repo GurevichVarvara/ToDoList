@@ -6,11 +6,11 @@ main {
 
 .button_to_submit {
 	background: rgba(0, 0, 0, 0);
-	margin-bottom: 2vh;
+	margin-bottom: 15px;
 }
 
 .trash-container {
-	margin-top: 5vh;
+	margin-top: 40px;
 	display: grid;
 	grid-template-columns: 1fr;
 }
@@ -58,15 +58,15 @@ main {
 }
 
 .select_trash_item_type_form {
-	margin-top: 5vh;
+	margin-top: 40px;
 	padding: 10px 10px;
 	border-radius: 13px;
 	background: rgba(221, 76, 14, 0.2);
 }
 
 .select_trash_item_type_form > p {
-	margin-top: 3vh;
-	margin-bottom: 0.5vh;
+	margin-top: 35px;
+	margin-bottom: 5px;
 	font-size: 20px;
 }
 

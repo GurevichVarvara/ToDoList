@@ -1,9 +1,9 @@
 main {
-	margin-top: 7vh;
+	margin-top: 50px;
 }
 
 .habits-container {
-	margin-top: 7vh;
+	margin-top: 50px;
 	margin-right: 10%;
 	margin-left: 10%;
 	display: grid;
@@ -47,8 +47,8 @@ main {
 }
 
 .habit-category > .bg {
-	height: 3vh;
-	width: 5vw;
+	height: 20px;
+	width: 60px;
 	filter: blur(4px);
 	margin: auto;
 	background: rgba(18, 50, 165, 0.7);
@@ -56,14 +56,14 @@ main {
 }
 
 .habit-category > .habit-categoty-text {
-	margin-top: -3.2vh;
+	margin-top: -24px;
 	z-index: 3;
 	color: black;
 }
 
 .habit-done-button, .habit-delete-button {
-	height: 5vh;
-	width: 3vw;
+	height: 34px;
+	width: 34px;
 	border-radius: 30px;
 	margin: 0 10px;
 }
@@ -93,11 +93,11 @@ main {
 
 @media (max-width: 980px) {
 	main {
-		margin-top: 5vh;
+		margin-top: 85px;
 	}
 
 	.habits-container {
-		margin-top: 3vh;
+		margin-top: 55px;
 	}
 
 	.habit-category {
@@ -105,8 +105,8 @@ main {
 	}
 
 	.habit-category > .bg {
-		height: 3vh;
-		width: 15vw;
+		height: 52px;
+		width: 147px;
 	}
 
 	.habits-container {
@@ -114,7 +114,8 @@ main {
 	}
 
 	.habit-done-button, .habit-delete-button {
-		width: 13vw;
+		width: 100px;
+		height: 100px;
 	}
 
 	.habit-done-button > i, .habit-delete-button > i {

@@ -1,12 +1,12 @@
 function get_drop_login_menu() {
-    var buttons = document.getElementById("desctop_navbar_buttons");
-    var navbar = document.getElementById("navbar");
+    var buttons = document.getElementsByClassName("desctop_navbar_buttons")[0];
+    var navbar = document.getElementsByClassName("navbar")[0];
 
     if (buttons.style.display === "grid") {
         buttons.style.display = "none";
-        navbar.style.height = "10vh";
+        navbar.style.height = "180px";
     } else {
         buttons.style.display = "grid";
-        navbar.style.height = "17vh";
+        navbar.style.height = "270px";
     }
 }

@@ -1,7 +1,7 @@
 function get_drop_login_menu() {
-    var buttons = document.getElementById("desctop_navbar_buttons_login");
-    var navbar = document.getElementById("navbar");
-    var login_form = document.getElementById("login-form");
+    var buttons = document.getElementsByClassName("desctop_navbar_buttons_login")[0];
+    var navbar = document.getElementsByClassName("navbar")[0];
+    var login_form = document.getElementsByClassName("login-form")[0];
 
     if (buttons.style.display === "grid") {
         buttons.style.display = "none";

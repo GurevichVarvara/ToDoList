@@ -13,10 +13,10 @@ body, html {
 }
 
 .navbar {
-	display: inline-block;
+	display: grid;
+	grid-template-columns: auto 1fr;
     background-color: rgba(221, 76, 14, 0.59);
     box-shadow: 0 7px 5px rgba(0, 0, 0, 0.075);
-    display: flex;
     height: 90px;
     width: 100%;
     padding-left: 10%;
@@ -25,7 +25,7 @@ body, html {
 }
 
 #app_logo {
-	display: inline-flex;
+	display: grid;
 	text-align: center;
 	font-size: 37px;
 	padding: 13px 0;
@@ -33,10 +33,12 @@ body, html {
 
 #app_logo > i {
 	font-size: 48px;
+	grid-row: 1;
 }
 
 #app_logo > p {
 	margin-left: 10px;
+	grid-row: 1;
 }
 
 #desctop_navbar_buttons {
@@ -46,10 +48,10 @@ body, html {
 }
 
 #desctop_navbar_buttons_login {
-	display: inline-block;
-	padding: 25px 10px;
+	display: block;
 	margin-left: auto;
-	float: right;
+	justify-content: end; 
+	padding: 25px 10px;
 }
 
 #desctop_navbar_buttons_login > a, #desctop_navbar_buttons > a {
@@ -100,9 +102,11 @@ body, html {
 
 	#phone_navbar_button {
 		display: block;
-		height: 10vh;
+		grid-row: 1; 
+		grid-column: 2;
 		margin-left: auto;
-		float: right;
+		justify-content: end;
+		height: 10vh;
 	}
 
 	#phone_navbar_button > i {

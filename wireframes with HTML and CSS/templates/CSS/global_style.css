@@ -71,7 +71,7 @@ body, html {
 .button_to_submit {
 	margin-top: 30px;
 	padding: 5px;
-	background-color: inherit;
+	background-color: rgba(191, 174, 86, 1);
 	border-radius: 8px;
 	border: none; 
 	font-size: 30px;
@@ -86,7 +86,6 @@ body, html {
 	.navbar {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		/*height: 180px;*/
 		height: auto;
 	}
 

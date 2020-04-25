@@ -11,7 +11,7 @@ main {
 }
 
 .habit, .completed-habit {
-	height: 30vh;
+	align-self: center;
 	width: auto;
 	border-radius: 37px;
 	margin: 30px;
@@ -27,7 +27,6 @@ main {
 }
 
 .completed-habit-text {
-	height: 40%;
 	width: 70%;
 	margin-left: 15%;
 	padding-top: 5%;
@@ -36,13 +35,11 @@ main {
 
 .habit-title {
 	font-size: 30px;
-	height: 30%;
 	padding-top: 20px;
 }
 
 .habit-category {
 	margin-top: 20px;
-	height: 30%;
 	text-align: center;
 }
 
@@ -65,7 +62,7 @@ main {
 	height: 34px;
 	width: 34px;
 	border-radius: 30px;
-	margin: 0 10px;
+	margin: 40px 10px;
 }
 
 .habit-done-button:hover, .habit-delete-button:hover {
@@ -105,8 +102,8 @@ main {
 	}
 
 	.habit-category > .bg {
-		height: 52px;
-		width: 147px;
+		height: 70px;
+		width: 250px;
 	}
 
 	.habits-container {
@@ -116,6 +113,7 @@ main {
 	.habit-done-button, .habit-delete-button {
 		width: 100px;
 		height: 100px;
+		margin-top: 70px;
 	}
 
 	.habit-done-button > i, .habit-delete-button > i {
@@ -123,7 +121,7 @@ main {
 	}
 
 	.habit-category > .habit-categoty-text {
-		margin-top: -2.9vh;
+		margin-top: -75px;
 		font-size: 30px;
 		color: black;
 	}

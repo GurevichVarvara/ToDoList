@@ -36,7 +36,8 @@ body, html {
 	grid-row: 1;
 }
 
-.app_logo > p {
+.app_logo > h1 {
+	font-size: 38px;
 	margin-left: 10px;
 	grid-row: 1;
 }

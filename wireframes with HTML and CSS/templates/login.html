@@ -12,19 +12,21 @@
     <script type="text/javascript" src="JS/drop-down_login_menu"></script>
 </head>
 <body>
-    <div class="navbar" id="navbar">
-        <a class="app_logo">
-            <i class="material-icons md-48">done_all</i>
-            <p>TODO List</p>
-        </a>
-        
-        <div class="desctop_navbar_buttons_login">
-            <a id="login_button" href="#">Log in</a>
-            <a id="signup_button" href="#">Sign up</a>
-        </div>
-        
-        <button class="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
-    </div>
+    <header>
+        <nav class="navbar" id="navbar">
+            <a class="app_logo">
+                <i class="material-icons md-48">done_all</i>
+                <h1>TODO List</h1>
+            </a>
+            
+            <div class="desctop_navbar_buttons_login">
+                <a id="login_button" href="#">Log in</a>
+                <a id="signup_button" href="#">Sign up</a>
+            </div>
+            
+            <button class="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
+        </nav>
+    </header>
 
     <form class="login-form" id="login-form" method="post">
         <div class="username_field">

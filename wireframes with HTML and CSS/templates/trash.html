@@ -12,21 +12,23 @@
     <script type="text/javascript" src="JS/drop-down_main_menu"></script>
 </head>
 <body>
-    <div class="navbar" id="navbar">
-        <a class="app_logo">
-            <i class="material-icons md-48">done_all</i>
-            <p>TODO List</p>
-        </a>
-        
-        <div class="desctop_navbar_buttons">
-            <a href="#">Todo's</a>
-            <a href="#">Habits</a>
-            <a href="#">Trash</a>
-            <a href="#">Sign out</a>
-        </div>
-        
-        <button class="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
-    </div>
+    <header>
+        <nav class="navbar" id="navbar">
+            <a class="app_logo">
+                <i class="material-icons md-48">done_all</i>
+                <h1>TODO List</h1>
+            </a>
+            
+            <div class="desctop_navbar_buttons">
+                <a href="#">Todo's</a>
+                <a href="#">Habits</a>
+                <a href="#">Trash</a>
+                <a href="#">Sign out</a>
+            </div>
+            
+            <button class="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
+        </nav>
+    </header>
 
     <main>
         <form class="select_trash_item_type_form">

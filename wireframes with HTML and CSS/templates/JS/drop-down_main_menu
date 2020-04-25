@@ -4,9 +4,7 @@ function get_drop_login_menu() {
 
     if (buttons.style.display === "grid") {
         buttons.style.display = "none";
-        navbar.style.height = "180px";
     } else {
         buttons.style.display = "grid";
-        navbar.style.height = "270px";
     }
 }

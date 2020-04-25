@@ -10,7 +10,7 @@ main {
 	margin-right: 10%;
 	margin-left: 10%;
 	display: grid;
-	grid-template-columns: 3fr 7fr 7fr;
+	grid-template-columns: auto 7fr 7fr;
 	background: rgba(221, 76, 14, 0.42);
 }
 

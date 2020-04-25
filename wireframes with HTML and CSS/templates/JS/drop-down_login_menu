@@ -5,11 +5,9 @@ function get_drop_login_menu() {
 
     if (buttons.style.display === "grid") {
         buttons.style.display = "none";
-        navbar.style.height = "10vh";
-        login_form.style.marginTop = "30vh";
+        login_form.style.marginTop = "522px";
     } else {
         buttons.style.display = "grid";
-        navbar.style.height = "17vh";
-        login_form.style.marginTop = "23vh";
+        login_form.style.marginTop = "354px";
     }
 }

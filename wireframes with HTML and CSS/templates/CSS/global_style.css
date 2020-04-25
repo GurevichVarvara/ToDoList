@@ -86,7 +86,8 @@ body, html {
 	.navbar {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		height: 180px;
+		/*height: 180px;*/
+		height: auto;
 	}
 
 	.app_logo {
@@ -120,29 +121,29 @@ body, html {
 		padding: 30px 0;
 	}
 
-	.desctop_navbar_buttons_login {
+	.desctop_navbar_buttons_login, .desctop_navbar_buttons {
 		grid-row: 2; 
+		grid-column: span 2;
 		display: none;
-		position: fixed;
+		padding: 25px 0;
+	}
+
+	.desctop_navbar_buttons_login {
 		width: inherit;
-		top: 140px;
-		padding-right: 20%;
-	  	grid-template-columns: 1fr 1fr;
+		justify-content: center;
+	  	grid-template-columns: repeat(2, auto); 
 	  	text-align: center;
 	  	font-size: 50px;
 	}
 
+	.desctop_navbar_buttons_login > #login_button{
+		margin-right: 120px;
+	}
+
 	.desctop_navbar_buttons {
-		grid-row: 2; 
-		grid-column-start: 1;
-		grid-column-end: 2;
-		display: none;
-		position: fixed;
-		width: inherit;
 		top: 140px;
-		padding-left: 0%;
-		padding-right: 20%;
-	  	grid-template-columns: 2fr 2fr 2fr 2.5fr;
+		grid-template-columns: repeat(4, auto); 
+	  	width: inherit;
 	  	text-align: center;
 	  	font-size: 45px;
 	}

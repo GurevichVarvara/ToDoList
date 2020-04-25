@@ -15,65 +15,64 @@ main {
 }
 
 .complited-todo-item, .todo-item {
-	display: grid;
-	grid-template-columns: 5fr 1fr 1fr;
+	display: flex;
+	align-items: center;
+  	justify-content: space-between;
 	width: 100%;
 	height: auto;
 	margin-top: 10px;
 	padding: 20px 25px;
 	font-size: 25px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+	border-radius: 12px;
 }
 
 .todo-item {
 	background: rgba(221, 76, 14);
 	opacity: 0.9;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 12px;
 }
 
 .complited-todo-item {
 	background: rgba(14, 221, 35);
 	opacity: 0.8;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 12px;
+}
+
+.complited-todo-item .todo-item-button--done {
+	display: none;
 }
 
 .todo-item-title {
-	display: block;
-	grid-row: 1;
-	grid-column: 1;
+	max-width: 280px;
 }
 
-.todo-item-delete-button, .todo-item-done-button {
+.todo-item-button {
+	margin: 10px;
 	width: 40px;
 	height: 40px;
-	margin: auto;
-	justify-content: center;
 	background: transparent;
 	border: none;
 	font-size: 25px;
 }
 
-.todo-item-done-button {
-	grid-row: 1;
-	grid-column: 2;
+.todo-item-button--done + .todo-item-button--delete {
+	margin-left: 10px;
 }
 
-.todo-item-delete-button {
-	grid-row: 1;
-	grid-column: 3;
-}
-
-.todo-item-done-button > i {
+.todo-item-button--done > i {
 	color: rgba(22, 204, 40, 1);
 }
 
-.todo-item-delete-button > i {
-	color: rgba(88, 10, 10, 1);
+.todo-item-button--delete > i {
+	color: rgba(60, 37, 37, 1);
 }
 
-.todo-item-done-button > i:hover, .todo-item-delete-button > i:hover {
-	font-size: 30px;
+.todo-item-button--done > i:hover {
+	color: rgba(5, 75, 33, 1);
+}
+
+.todo-item-button--delete > i:hover {
+	color: rgba(0, 0, 0, 1);
 }
 
 #important-urgent.todo-title-phone, #not-important-urgent.todo-title-phone, #important-not-urgent.todo-title-phone, #not-important-not-urgent.todo-title-phone {
@@ -179,6 +178,10 @@ main {
 		border: none;
 	}
 
+	.todo-item-title {
+		max-width: 500px;
+	}
+
 	#important.todo-title, #not-important.todo-title, #urgent.todo-title, #not-urgent.todo-title {
 		display: none;
 	}
@@ -248,7 +251,7 @@ main {
 		grid-column: 1;
 	}
 
-	.todo-item-delete-button, .todo-item-done-button {
+	.todo-item-button--delete, .todo-item-button--done {
 		margin-left: 20px;
 		width: 60px;
 		height: 60px;
@@ -256,11 +259,11 @@ main {
 		font-size: 25px;
 	}
 
-	.todo-item-done-button > i, .todo-item-delete-button > i {
+	.todo-item-button--done > i, .todo-item-button--delete > i {
 		font-size: 50px;
 	}
 
-	.todo-item-done-button > i:hover, .todo-item-delete-button > i:hover {
+	.todo-item-button--done > i:hover, .todo-item-button--delete > i:hover {
 		font-size: 30px;
 	}
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>trash</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/global_style.css">
+    <link rel="stylesheet" href="CSS/thash_styles.css">
+
+    <script type="text/javascript" src="JS/drop-down_main_menu"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+            <a class="app_logo">
+                <i class="material-icons md-48">done_all</i>
+                <h1>TODO List</h1>
+            </a>
+            
+            <div class="desctop_navbar_buttons">
+                <a href="#">Todo's</a>
+                <a href="#">Habits</a>
+                <a href="#">Trash</a>
+                <a href="#">Sign out</a>
+            </div>
+            
+            <button class="phone_navbar_button" onclick="get_drop_login_menu()"><i class="material-icons md-48">reorder</i></button>
+        </nav>
+    </header>
+
+    <main>
+        <form class="select_trash_item_type_form">
+            <p>Please select what you category want to display</p>
+            <div class="part_item_type_of_select_form">
+                <div id="todos_section"> 
+                    <input type="checkbox" id="category_of_items_1"
+                     name="type_of_items" value="todos">
+                    <label for="category_of_items_1">Todo's</label>
+                </div>
+
+                <div id="habits_section">
+                    <input type="checkbox" id="category_of_items_2"
+                     name="type_of_items" value="habits">
+                    <label for="category_of_items_2">Habits</label>
+                </div>
+
+                <div id="all_section">
+                    <input type="checkbox" id="category_of_items_3"
+                     name="type_of_items" value="all">
+                    <label for="category_of_items_3">All</label>
+                </div>
+            </div>
+
+            <p>Please select the sorting method</p>
+            <div class="part_date_of_select_form">
+                <div id="new-old_section">
+                    <input type="radio" id="sorting_method_1"
+                     name="sorting_methods" value="new-old">
+                    <label for="sorting_method_1">Recently added first</label>
+                </div>
+
+                <div id="old-new_section">
+                    <input type="radio" id="sorting_method_1"
+                     name="sorting_methods" value="old-new">
+                    <label for="sorting_method_1">Old first</label>
+                </div>
+            </div>
+
+            <input class="button_to_submit" type="submit" value="Show">
+        </form>
+
+        <div class="trash-container">
+            <div class="trash-item">
+                <p class="trash-item-name">very very very very very very very long Todo 4</p>
+                <p class="trash-item-category">Todo</p>
+                <button class="trash-item-back-button">Back</button>
+                <button class="trash-item-delete-button">Remove permanently</button>
+            </div>
+            <div class="trash-item">
+                <p class="trash-item-name">Todo 5</p>
+                <p class="trash-item-category">Todo</p>
+                <button class="trash-item-back-button">Back</button>
+                <button class="trash-item-delete-button">Remove permanently</button>
+            </div>
+            <div class="trash-item">
+                <p class="trash-item-name">Task 4</p>
+                <p class="trash-item-category">Habit</p>
+                <button class="trash-item-back-button">Back</button>
+                <button class="trash-item-delete-button">Remove permanently</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

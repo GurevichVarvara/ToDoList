@@ -1,0 +1,137 @@
+main {
+	margin-top: 50px;
+}
+
+.habits-container {
+	margin-top: 50px;
+	margin-right: 10%;
+	margin-left: 10%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.habit, .completed-habit {
+	align-self: center;
+	width: auto;
+	border-radius: 37px;
+	margin: 30px;
+}
+
+.habit {
+	background: rgba(221, 76, 14, 0.42);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.completed-habit {
+	background: rgba(221, 76, 14, 0.23);
+}
+
+.completed-habit-text {
+	width: 70%;
+	margin-left: 15%;
+	padding-top: 5%;
+	text-align: center;
+}
+
+.habit-title {
+	font-size: 30px;
+	padding-top: 20px;
+}
+
+.habit-category {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.habit-category > .bg {
+	height: 20px;
+	width: 60px;
+	filter: blur(4px);
+	margin: auto;
+	background: rgba(18, 50, 165, 0.7);
+	z-index: -1;
+}
+
+.habit-category > .habit-categoty-text {
+	margin-top: -24px;
+	z-index: 3;
+	color: black;
+}
+
+.habit-done-button, .habit-delete-button {
+	height: 34px;
+	width: 34px;
+	border-radius: 30px;
+	margin: 40px 10px;
+}
+
+.habit-done-button:hover, .habit-delete-button:hover {
+	box-shadow: 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.habit-done-button {
+	background: rgba(14, 221, 35, 0.44);
+	border-color: rgba(3, 123, 37, 0.7);
+}
+
+.habit-delete-button {
+	background: rgba(88, 10, 10, 0.4);
+	border-color: rgba(88, 10, 10, 0.7);
+}
+
+.habit-done-button > i {
+	color: rgba(3, 123, 37, 1);
+}
+
+.habit-delete-button > i {
+	color: rgba(88, 10, 10, 1);
+}
+
+
+@media (max-width: 980px) {
+	main {
+		margin-top: 85px;
+	}
+
+	.habits-container {
+		margin-top: 55px;
+	}
+
+	.habit-category {
+		margin-top: 60px;
+	}
+
+	.habit-category > .bg {
+		height: 70px;
+		width: 250px;
+	}
+
+	.habits-container {
+		grid-template-columns: 1fr;
+	}
+
+	.habit-done-button, .habit-delete-button {
+		width: 100px;
+		height: 100px;
+		margin-top: 70px;
+	}
+
+	.habit-done-button > i, .habit-delete-button > i {
+		font-size: 50px;
+	}
+
+	.habit-category > .habit-categoty-text {
+		margin-top: -75px;
+		font-size: 30px;
+		color: black;
+	}
+
+	.habit-title {
+		font-size: 70px;
+		padding-top: 30px;
+	}
+
+	.completed-habit-text {
+		font-size: 30px;
+	}
+}

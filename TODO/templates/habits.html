@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="CSS/global_style.css">
-    <link rel="stylesheet" href="CSS/todo_styles.css">
-    <link rel="stylesheet" href="CSS/habits_styles.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/global_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/todo_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/habits_styles.css') }}">
 
-    <script type="text/javascript" src="JS/drop-down_main_menu"></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
 </head>
 <body>
     <header>

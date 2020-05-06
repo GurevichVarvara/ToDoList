@@ -97,7 +97,8 @@ body, html {
 		font-size: 60px;
 	}
 
-	.app_logo > p {
+	.app_logo > h1 {
+	    font-size:60px;
 		margin: 20px 30px;
 	}
 

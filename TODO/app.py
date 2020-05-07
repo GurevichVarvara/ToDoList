@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify, make_response
 
 app = Flask(__name__)
+
 
 
 @app.route('/')
@@ -8,12 +9,16 @@ def index():
     return render_template('todos.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        entry = request.get_json()
+        print(entry)
+
     return render_template('login.html')
 
 
-@app.route('/habits')
+@app.route('/habits', methods=['GET', 'POST'])
 def habits():
     return render_template('habits.html')
 

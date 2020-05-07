@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/login_register_form.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_login_menu.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/login-form_confirmation.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -28,15 +29,15 @@
         </nav>
     </header>
 
-    <form class="login-form" id="login-form" method="post">
+    <form class="login-form" id="login-form" onsubmit="confirm_login_form()">
         <div class="username_field">
             <label for="username">Username</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" required>
         </div>
 
         <div class="password_field">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
         </div>
             
         <input class="button_to_submit" type="submit" value="Log in">

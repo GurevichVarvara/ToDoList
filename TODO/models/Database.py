@@ -15,8 +15,7 @@ class Database:
         return cls.__instance
 
     def if_user_exists(self, username, password):
-        password_hash = sha256_crypt.encrypt(str(password))
-        user = next((user for user in self.users if user.username == username and user.password_hash == password_hash), None)
+        user = next((user for user in self.users if (user.username == username and user.password == password)), None)
 
         response = 'Username and password combination is not valid'
         if user:

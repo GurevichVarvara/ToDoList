@@ -1,4 +1,4 @@
-function get_drop_login_menu() {
+function get_drop_down_menu() {
     var buttons = document.getElementsByClassName("desctop_navbar_buttons_login")[0];
     var navbar = document.getElementsByClassName("navbar")[0];
     var login_form = document.getElementsByClassName("login-form")[0];

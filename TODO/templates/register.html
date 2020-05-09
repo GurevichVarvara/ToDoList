@@ -24,12 +24,12 @@
                 <a id="login_button" href="/login">Log in</a>
                 <a id="signup_button" href="/register">Sign up</a>
             </div>
-            
+
             <button class="phone_navbar_button" onclick="get_drop_down_menu()"><i class="material-icons md-48">reorder</i></button>
         </nav>
     </header>
 
-    <form class="login-form" id="login-form" onsubmit="confirm_login_form()">
+    <form class="login-form" id="login-form" onsubmit="confirm_register_form()">
         <div class="username_field">
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
@@ -39,7 +39,12 @@
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
         </div>
-            
+
+        <div class="password_field">
+            <label for="password_confirmation">Confirmation</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" required>
+        </div>
+
         <input class="button_to_submit" type="submit" value="Log in">
     </form>
 </body>

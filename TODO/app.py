@@ -16,7 +16,10 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    return
+    if request.method == 'POST':
+        entry = request.get_json()
+
+    return render_template('register.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -38,6 +41,16 @@ def login():
         return response
 
     return render_template('login.html')
+
+
+@app.route('/is_user_logged_in', methods=['POST'])
+def is_user_logged_in():
+    response = {'logged_in': "no"}
+
+    if 'user_id' in session.keys():
+        response['logged_in'] = "yes"
+
+    return make_response(jsonify(response), 200)
 
 
 @app.route('/habits', methods=['GET', 'POST'])

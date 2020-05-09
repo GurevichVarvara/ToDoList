@@ -1,0 +1,4 @@
+.username_field > label, .password_field > label {
+	margin-right: auto;
+    text-align: left;
+}

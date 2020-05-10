@@ -31,6 +31,15 @@ function are_pass_and_confirmation_equal(password, confirmation) {
     return result;
 }
 
+function set_error_message(error_message) {
+    document.getElementById("error-message-container").style.visibility = "visible";
+    document.getElementById("error-message").innerHTML = error_message;
+}
+
+function set_username_length_error() {
+    set_error_message("The length of user name must be less then 15 characters");
+}
+
 
 function connect_to_server(url, entry) {
     fetch(url, {
@@ -46,7 +55,7 @@ function connect_to_server(url, entry) {
             window.location.replace(`${window.origin}/`);
         }
         else {
-            alert(data["message"]);
+            set_error_message(data["message"]);
         }
     });
 }
@@ -67,7 +76,7 @@ function confirm_login_form(event) {
         connect_to_server(`${window.origin}/login`, entry);
     }
     else {
-        alert("The length of user name must be less then 15 characters");
+        set_username_length_error();
         return false;
     }
 }
@@ -90,11 +99,11 @@ function confirm_register_form(event) {
             connect_to_server(`${window.origin}/register`, entry);
         }
         else {
-            alert("Password and its confirmation are not equal to each other");
+            set_error_message("Password and its confirmation are not equal to each other");
         }
     }
     else {
-        alert("The length of user name must be less then 15 characters");
+        set_username_length_error();
         return false;
     }
 }

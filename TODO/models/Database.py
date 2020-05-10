@@ -38,8 +38,9 @@ class Database:
         return response
 
     def if_user_exists(self, username, password):
+        user = None
         if username in self.users.keys():
-            user = self.users[username] if sha256_crypt.verify(password, self.users[username].password_hash) else None
+            user = self.users[username] if sha256_crypt.verify(password, self.users[username].password_hash) else user
 
         response = 'Username and password combination is not valid'
         if user:

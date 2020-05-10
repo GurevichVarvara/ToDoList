@@ -42,12 +42,10 @@ def get_response_to_front(response_from_db):
     if isinstance(response_from_db, int):
         session['user_id'] = response_from_db
         response = make_response(jsonify({"message": "ok"}), 200)
-        #response.body = jsonify({"message": "ok"})
 
     # database response is error message
     else:
         response = make_response(jsonify({"message": response_from_db}), 200)
-        #response.body = jsonify({"message": response_from_db})
 
     return response
 

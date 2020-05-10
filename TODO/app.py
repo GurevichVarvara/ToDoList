@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, jsonify, make_response, session, redirect, url_for
 from models.Database import Database
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -9,7 +10,17 @@ PERMANENT_SESSION_LIFETIME = 1800
 app.config.update(SECRET_KEY=os.urandom(24))
 
 
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' not in session:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return wrap
+
+
 @app.route('/')
+@login_required
 def index():
     return render_template('todos.html')
 
@@ -37,10 +48,18 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/logout')
+def logout():
+    session.clear()
+
+    return redirect(url_for('login'))
+
+
 def get_response_to_front(response_from_db):
     # database response is user's id
     if isinstance(response_from_db, int):
         session['user_id'] = response_from_db
+        session['logged_in'] = True
         response = make_response(jsonify({"message": "ok"}), 200)
 
     # database response is error message
@@ -50,22 +69,14 @@ def get_response_to_front(response_from_db):
     return response
 
 
-@app.route('/is_user_logged_in', methods=['POST'])
-def is_user_logged_in():
-    response = {'logged_in': "no"}
-
-    if 'user_id' in session.keys():
-        response['logged_in'] = "yes"
-
-    return make_response(jsonify(response), 200)
-
-
 @app.route('/habits', methods=['GET', 'POST'])
+@login_required
 def habits():
     return render_template('habits.html')
 
 
 @app.route('/trash')
+@login_required
 def trash():
     return render_template('trash.html')
 

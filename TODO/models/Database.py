@@ -15,7 +15,6 @@ class Database:
             json_string = json.dumps([user.__dict__ for user in self.users])
             json.dump(json_string, f)
 
-
     @classmethod
     def get_instance(cls):
         if not cls.__instance:
@@ -26,8 +25,7 @@ class Database:
         if username in self.user_names:
             response = 'This user name already exists'
         else:
-            #new_user = User(username, sha256_crypt.encrypt(password))
-            new_user = User(username, password)
+            new_user = User(username, sha256_crypt.encrypt(password))
             self.users.append(new_user)
             self.user_names.add(new_user.username)
             #self._save_to_db()
@@ -37,8 +35,8 @@ class Database:
         return response
 
     def if_user_exists(self, username, password):
-        #user = next((user for user in self.users if (user.username == username and sha256_crypt.verify(password, user.password_hash))), None)
-        user = next((user for user in self.users if (user.username == username and password == user.password)), None)
+        user = next((user for user in self.users if (user.username == username and
+                                                     sha256_crypt.verify(password, user.password_hash))), None)
 
         response = 'Username and password combination is not valid'
         if user:

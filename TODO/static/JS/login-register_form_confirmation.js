@@ -1,3 +1,17 @@
+window.onload=function() {
+    var login_form = document.querySelector('#login-form.login-form');
+    var registration_form = document.querySelector('#registration-form.login-form');
+
+    if (login_form) {
+        login_form.addEventListener('submit', confirm_login_form);
+    }
+
+    if (registration_form) {
+        registration_form.addEventListener('submit', confirm_register_form);
+    }
+}
+
+
 function check_username_length(username) {
     var result = false;
     if (username.length < 15) {
@@ -25,21 +39,22 @@ function connect_to_server(url, entry) {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(entry)
-    })
-    .then(function(response) {
-        response.json().then(function(data) {
-            if (data["error"]) {
-                alert('boo' + data["error"])
-            }
-            else if (data["message"] == "ok") {
-                console.log('ok');
-            }
-        })
+    }).then(response => response.json())
+    .then(function(data) {
+        console.log(data);
+        if (data["message"] == "ok") {
+            window.location.replace(`${window.origin}/`);
+        }
+        else {
+            alert(data["message"]);
+        }
     });
 }
 
 
-function confirm_login_form() {
+function confirm_login_form(event) {
+    event.preventDefault();
+
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
@@ -58,7 +73,9 @@ function confirm_login_form() {
 }
 
 
-function confirm_register_form() {
+function confirm_register_form(event) {
+    event.preventDefault();
+
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var confirmation = document.getElementById("password_confirmation").value;

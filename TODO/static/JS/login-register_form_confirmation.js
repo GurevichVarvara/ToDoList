@@ -24,16 +24,15 @@ function connect_to_server(url, entry) {
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(entry),
-        redirect: 'manual'
+        body: JSON.stringify(entry)
     })
     .then(function(response) {
         response.json().then(function(data) {
             if (data["error"]) {
-                alert(data["error"])
+                alert('boo' + data["error"])
             }
-            else if (data["message"] === "ok") {
-                window.location.replace(data["url"]);
+            else if (data["message"] == "ok") {
+                console.log('ok');
             }
         })
     });

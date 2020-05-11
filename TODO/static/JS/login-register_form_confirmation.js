@@ -12,14 +12,8 @@ window.onload=function() {
 }
 
 
-function check_username_length(username) {
-    var result = false;
-    if (username.length < 15) {
-        result = true;
-    }
+var check_username_length = (username) => { return username.length < 15; };
 
-    return result;
-}
 
 function are_pass_and_confirmation_equal(password, confirmation) {
     var result = false;

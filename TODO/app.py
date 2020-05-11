@@ -29,6 +29,10 @@ def index():
 def register():
     if request.method == 'POST':
         entry = request.get_json()
+
+        if len(entry['username']) > 15:
+            return make_response(jsonify({"message": "The length of user name must be less then 15 characters"}), 200)
+
         response_from_db = Database.get_instance().create_user(entry['username'], entry['password'])
 
         return get_response_to_front(response_from_db)
@@ -40,6 +44,9 @@ def register():
 def login():
     if request.method == 'POST':
         entry = request.get_json()
+
+        if len(entry['username']) > 15:
+            return make_response(jsonify({"message": "The length of user name must be less then 15 characters"}), 200)
 
         response_from_db = Database.get_instance().if_user_exists(entry['username'], entry['password'])
 

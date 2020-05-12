@@ -1,0 +1,59 @@
+
+.login-form {
+	margin-top: 155px;
+	text-align: center;
+}
+
+.error-message-container {
+    height: 70px;
+    width: 850px;
+    background: rgba(163, 55, 55, 0.49);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    margin:auto;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 30px;
+    color: rgba(44, 6, 6, 0.85);
+    visibility: hidden;
+}
+
+
+.username_field > label, .password_field > label {
+	font-size: 30px;
+	width: 180px;
+	display: inline-block;
+}
+
+.username_field > input, .password_field > input {
+	font-size: 30px;
+	width: 342px;
+	height: 48px;
+	background: rgba(221, 76, 14, 0.42);
+	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+	border-width: 0;
+	margin: 10px;
+}
+
+
+@media (max-width: 980px) {
+
+	.login-form {
+		margin-top: 522px;
+	}
+
+	.username_field > input, .password_field > input {
+		font-size: 50px;
+		width: 450px;
+		height: 70px;
+	}
+
+	.username_field > label, .password_field > label {
+		font-size: 50px;
+		width: 310px;
+	}
+
+}

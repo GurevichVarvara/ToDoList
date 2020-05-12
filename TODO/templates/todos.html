@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo's</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/global_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/todo_styles.css') }}">
+
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/global.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+            <a class="app_logo">
+                <i class="material-icons md-48">done_all</i>
+                <h1>TODO List</h1>
+            </a>
+            
+            <div class="desctop_navbar_buttons">
+                <a href="/">Todo's</a>
+                <a href="/habits">Habits</a>
+                <a href="/trash">Trash</a>
+                <a href="/logout">Sign out</a>
+            </div>
+            
+            <button class="phone_navbar_button" onclick="get_drop_down_menu()"><i class="material-icons md-48">reorder</i></button>
+        </nav>
+    </header>
+
+    <main id="main_form">
+        <a class="add_todo_button" id="up" href="#">Add Todo</a>
+
+        <div class="todo-container">
+            
+            <div class="todo-title" id="important">
+                <p>Important</p>
+            </div>
+            <div class="todo-title" id="not-important">
+                <p>Not Important</p>
+            </div>
+            <div class="todo-title" id="urgent">
+                <p>Urgent</p>
+            </div>
+            <div class="todo-title" id="not-urgent">
+                <p>Not Urgent</p>
+            </div>
+
+            <div class="todo-title-phone" id="important-urgent">
+                <p>Important, Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="not-important-urgent">
+                <p>Not Important, Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="important-not-urgent">
+                <p>Important, Not Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="not-important-not-urgent">
+                <p>Not Important, Not Urgent</p>
+            </div>
+
+            <section class="todo-category" id="important-urgent">
+                <ol class="important-urgent-list">
+                    <li class="todo-item">
+                      <p class="todo-item-title">very very very very very very very very very very very very very very long Todo 1</p>
+                      <div class="todo-item__controls">
+                        <button class="todo-item-button todo-item-button--done">
+                          <i class="material-icons">done_outline</i>
+                        </button>
+                        <button class="todo-item-button todo-item-button--delete">
+                          <i class="material-icons">delete</i>
+                        </button>
+                      </div>
+                    </li>
+
+                    <li class="complited-todo-item">
+                      <p class="todo-item-title">Completed todo</p>
+                      <div class="todo-item__controls">
+                        <button class="todo-item-button todo-item-button--done">
+                          <i class="material-icons">done_outline</i>
+                        </button>
+                        <button class="todo-item-button todo-item-button--delete">
+                          <i class="material-icons">delete</i>
+                        </button>
+                      </div>
+                    </li>
+
+                    <li class="todo-item">
+                      <p class="todo-item-title">Todo 2</p>
+                      <div class="todo-item__controls">
+                        <button class="todo-item-button todo-item-button--done">
+                          <i class="material-icons">done_outline</i>
+                        </button>
+                        <button class="todo-item-button todo-item-button--delete">
+                          <i class="material-icons">delete</i>
+                        </button>
+                      </div>
+                    </li>
+
+                    <li class="todo-item">
+                      <p class="todo-item-title">Todo 5</p>
+                      <div class="todo-item__controls">
+                        <button class="todo-item-button todo-item-button--done">
+                          <i class="material-icons">done_outline</i>
+                        </button>
+                        <button class="todo-item-button todo-item-button--delete">
+                          <i class="material-icons">delete</i>
+                        </button>
+                      </div>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="todo-category" id="not-important-urgent">
+                <ol class="not-important-urgent-list"></ol>
+            </section>
+
+            <section class="todo-category" id="important-not-urgent">
+                <ol class="important-not-urgent-list"></ol>
+            </section>
+
+            <section class="todo-category" id="not-important-not-urgent">
+                <ol class="not-important-not-urgent-list">
+                    <li class="todo-item">
+                      <p class="todo-item-title">Todo 4</p>
+                      <div class="todo-item__controls">
+                        <button class="todo-item-button todo-item-button--done">
+                          <i class="material-icons">done_outline</i>
+                        </button>
+                        <button class="todo-item-button todo-item-button--delete">
+                          <i class="material-icons">delete</i>
+                        </button>
+                      </div>
+                    </li>
+                </ol>
+            </section>
+        </div>
+
+        <a class="add_todo_button" id="down" href="#">Add Todo</a>
+    </main>
+</body>
+</html>

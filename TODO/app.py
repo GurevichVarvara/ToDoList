@@ -31,7 +31,13 @@ def register():
         entry = request.get_json()
 
         if len(entry['username']) > 15:
-            return make_response(jsonify({"message": "The length of user name must be less then 15 characters"}), 200)
+            entry_error_response = make_response(jsonify({"message": "The length of user name must be less then 15 "
+                                                                     "characters"}), 200)
+            if len(entry['password'] < 10):
+                entry_error_response = make_response(
+                    jsonify({"message": "The length of password must be greater then 10 characters"}), 200)
+
+            return entry_error_response
 
         response_from_db = Database.get_instance().create_user(entry['username'], entry['password'])
 

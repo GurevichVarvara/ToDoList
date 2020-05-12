@@ -15,6 +15,9 @@ window.onload=function() {
 var check_username_length = (username) => { return username.length < 15; };
 
 
+var check_password_length = (password) => { return password.length > 10; };
+
+
 function are_pass_and_confirmation_equal(password, confirmation) {
     var result = false;
 
@@ -32,6 +35,11 @@ function set_error_message(error_message) {
 
 function set_username_length_error() {
     set_error_message("The length of user name must be less then 15 characters");
+}
+
+
+function set_password_length_error() {
+    set_error_message("The length of password must be greater then 10 characters");
 }
 
 
@@ -83,7 +91,7 @@ function confirm_register_form(event) {
     var password = document.getElementById("password").value;
     var confirmation = document.getElementById("password_confirmation").value;
 
-    if (check_username_length(username)) {
+    if (check_username_length(username) && check_password_length(password)) {
         if (are_pass_and_confirmation_equal(password, confirmation)) {
             var entry = {
                 username: username,
@@ -96,8 +104,12 @@ function confirm_register_form(event) {
             set_error_message("Password and its confirmation are not equal to each other");
         }
     }
-    else {
+    else if (check_password_length(password)) {
         set_username_length_error();
+        return false;
+    }
+    else {
+        set_password_length_error();
         return false;
     }
 }

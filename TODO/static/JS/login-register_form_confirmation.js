@@ -12,10 +12,10 @@ window.onload=function() {
 }
 
 
-var check_username_length = (username) => { return username.length < 15; };
+let check_username_length = (username) => { return username.length < 15; };
 
 
-var check_password_length = (password) => { return password.length > 10; };
+let check_password_length = (password) => { return password.length > 10; };
 
 
 function are_pass_and_confirmation_equal(password, confirmation) {

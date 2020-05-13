@@ -87,6 +87,10 @@ main {
 	color: rgba(88, 10, 10, 1);
 }
 
+.add_item_form {
+	height: 380px;
+}
+
 
 @media (max-width: 980px) {
 	main {
@@ -133,5 +137,9 @@ main {
 
 	.completed-habit-text {
 		font-size: 30px;
+	}
+
+	.add_item_form {
+		height: 600px;
 	}
 }

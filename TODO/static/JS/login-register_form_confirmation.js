@@ -53,7 +53,7 @@ function connect_to_server(url, entry) {
     }).then(response => response.json())
     .then(function(data) {
         console.log(data);
-        if (data["message"] == "ok") {
+        if (data["message"] === "ok") {
             window.location.replace(`${window.origin}/`);
         }
         else {

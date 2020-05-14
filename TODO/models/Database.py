@@ -55,5 +55,12 @@ class Database:
 
         return True
 
+    def add_habit_to_user(self, username, habit_title, habit_category, habit_periodicity):
+        user = self.users[username]
+        user.add_habit(habit_title, habit_category, habit_periodicity)
+        self._save_to_db()
+
+        return True
+
 
 

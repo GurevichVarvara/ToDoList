@@ -96,11 +96,10 @@ function add_todo(event) {
     category = category.substring(0, category.length - 1);
 
     let todo_data = {
-        type: 'todo',
         title: todo_title,
         category: category
     };
-    send_item_data_to_server(`${window.origin}/`, todo_data)
+    send_item_data_to_server(`${window.origin}/`, todo_data);
 
     append_todo_item_to_DOM(todo_title, category);
     finish_work_with_add_todo_form();
@@ -113,8 +112,14 @@ function add_habit(event) {
     const habit_category = document.querySelector('input[name="category_of_habit"]:checked').value;
     const periodicity = document.getElementById("item_days").value;
 
-    append_habit_item_to_DOM(habit_title, habit_category, periodicity);
+    let habit_data = {
+        title: habit_title,
+        category: habit_category,
+        periodicity: periodicity
+    };
+    send_item_data_to_server(`${window.origin}/habits`, habit_data);
 
+    append_habit_item_to_DOM(habit_title, habit_category, periodicity);
     finish_work_with_add_habit_form();
 }
 

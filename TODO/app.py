@@ -24,10 +24,8 @@ def login_required(f):
 def index():
     if request.method == 'POST':
         item_data = request.get_json()
-
-        if item_data['type'] == 'todo':
-            result_of_adding = Database.get_instance().add_todo_to_user(session['username'], item_data['title'], item_data['category'])
-            response = make_response(200) if result_of_adding else make_response(400)
+        result_of_adding = Database.get_instance().add_todo_to_user(session['username'], item_data['title'], item_data['category'])
+        response = make_response(200) if result_of_adding else make_response(400)
 
         return response
 
@@ -94,6 +92,13 @@ def get_response_to_front(response_from_db):
 @app.route('/habits', methods=['GET', 'POST'])
 @login_required
 def habits():
+    if request.method == 'POST':
+        item_data = request.get_json()
+        result_of_adding = Database.get_instance().add_habit_to_user(session['username'], item_data['title'], item_data['category'], item_data['periodicity'])
+        response = make_response(200) if result_of_adding else make_response(400)
+
+        return response
+
     return render_template('habits.html')
 
 

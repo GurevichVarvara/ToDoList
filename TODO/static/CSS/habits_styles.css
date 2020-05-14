@@ -33,6 +33,18 @@ main {
 	text-align: center;
 }
 
+.habit > .completed-habit-text {
+    display: none;
+}
+
+.completed-habit > .habit-category {
+    display: none;
+}
+
+.completed-habit > .habit-done-button {
+    display: none;
+}
+
 .habit-title {
 	font-size: 30px;
 	padding-top: 20px;

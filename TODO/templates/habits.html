@@ -44,6 +44,10 @@
                     <div class="habit-categoty-text">easy</div>
                 </div>
 
+                <div class="completed-habit-text">
+                    <p>You can take a break from this task for two days</p>
+                </div>
+
                 <button class="habit-done-button">
                     <i class="material-icons">done_outline</i>
                 </button>
@@ -56,53 +60,30 @@
             <div class="completed-habit">
                 <p class="habit-title">Task 2</p>
 
+                <div class="habit-category">
+                    <div class="bg"></div>
+                    <div class="habit-categoty-text">easy</div>
+                </div>
+
                 <div class="completed-habit-text">
                     <p>You can take a break from this task for two days</p>
                 </div>
 
-                <button class="habit-delete-button">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
-            <div class="habit">
-                <p class="habit-title">Task 3</p>
-
-                <div class="habit-category">
-                    <div class="bg"></div>
-                    <div class="habit-categoty-text">medium</div>
-                </div>
-                
                 <button class="habit-done-button">
                     <i class="material-icons">done_outline</i>
                 </button>
-                        
+
                 <button class="habit-delete-button">
                     <i class="material-icons">delete</i>
                 </button>
             </div>
 
-            <div class="habit">
-                <p class="habit-title">Task 4</p>
-
-                <div class="habit-category">
-                    <div class="bg"></div>
-                    <div class="habit-categoty-text">medium</div>
-                </div>
-                
-                <button class="habit-done-button">
-                    <i class="material-icons">done_outline</i>
-                </button>
-                        
-                <button class="habit-delete-button">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
         </div>
     </main>
 
     <div class="gray_background" id="gray_background"></div>
 
-    <form class="add_item_form" id="add_item_form">
+    <form class="add_item_form" id="habit">
         <div class="item_name" id="title">
             <label for="item_title">New Habit Title</label>
             <input type="text" name="item_title" id="item_title" required>
@@ -115,19 +96,19 @@
 
         <div class="todo_category_select_form">
             <div>
-                <input type="radio" id="category_of_habit_1"
-                         name="category_of_habit" value="easy">
-                <label for="category_of_habit_1">Easy</label>
+                <input type="radio" id="category_of_habit_easy"
+                         name="category_of_habit" value="easy" checked>
+                <label for="category_of_habit_easy">Easy</label>
             </div>
             <div>
-                <input type="radio" id="category_of_habit_2"
+                <input type="radio" id="category_of_habit_medium"
                          name="category_of_habit" value="medium">
-                <label for="category_of_habit_2">Medium</label>
+                <label for="category_of_habit_medium">Medium</label>
             </div>
             <div>
-                <input type="radio" id="category_of_habit_3"
+                <input type="radio" id="category_of_habit_hard"
                          name="category_of_habit" value="hard">
-                <label for="category_of_habit_3">Hard</label>
+                <label for="category_of_habit_hard">Hard</label>
             </div>
         </div>
 

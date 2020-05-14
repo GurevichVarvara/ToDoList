@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/global_style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/todo_styles.css') }}">
 
-    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/global.js') }}" ></script>
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/add_item_form.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -32,7 +32,7 @@
     </header>
 
     <main id="main_form">
-        <a class="add_todo_button" id="up" href="#">Add Todo</a>
+        <button class="add_todo_button" id="up" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>
 
         <div class="todo-container">
             
@@ -139,12 +139,12 @@
             </section>
         </div>
 
-        <a class="add_todo_button" id="down" href="#">Add Todo</a>
+        <button class="add_todo_button" id="down" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>
     </main>
 
-    <div class="gray_background"></div>
+    <div class="gray_background" id="gray_background"></div>
 
-    <form class="add_item_form">
+    <form class="add_item_form" id="add_item_form">
         <div class="item_name">
             <label for="item_title">New Todo Title</label>
             <input type="text" name="item_title" id="item_title" required>

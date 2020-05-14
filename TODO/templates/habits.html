@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/habits_styles.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/add_item_form.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -32,7 +33,7 @@
     </header>
 
     <main>
-        <a class="add_todo_button" href="#">Add Habit</a>
+        <button class="add_todo_button" onclick="change_add_item_form_visibility_state('grid')">Add Habit</button>
 
         <div class="habits-container">
             <div class="habit">
@@ -99,9 +100,9 @@
         </div>
     </main>
 
-    <div class="gray_background"></div>
+    <div class="gray_background" id="gray_background"></div>
 
-    <form class="add_item_form">
+    <form class="add_item_form" id="add_item_form">
         <div class="item_name" id="title">
             <label for="item_title">New Habit Title</label>
             <input type="text" name="item_title" id="item_title" required>

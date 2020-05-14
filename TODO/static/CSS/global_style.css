@@ -81,6 +81,7 @@ body {
 	top: 0;
 	bottom: 0;
 	z-index: 2;
+	display: none;
 }
 
 .button_to_submit, .button_to_cancel {
@@ -96,7 +97,8 @@ body {
 }
 
 .add_item_form {
-	display: grid;
+    /*display: grid;*/
+	display: none;
 	position: fixed;
 	left: 0;
 	right: 0;

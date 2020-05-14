@@ -12,22 +12,8 @@ window.onload=function() {
 }
 
 function change_add_item_form_visibility_state(state, event) {
-    if (event) {
-        event.preventDefault();
-    }
-
     document.getElementById("gray_background").style.display = state;
     document.getElementsByClassName("add_item_form")[0].style.display = state;
-
-    if (state === 'none') {
-        let input_item_title = document.getElementById("item_title");
-        input_item_title.value = '';
-
-        let input_item_days = document.getElementById("item_days");
-        if (input_item_days) {
-            input_item_days.value = '';
-        }
-    }
 }
 
 function append_todo_item_to_DOM(todo_title, category) {

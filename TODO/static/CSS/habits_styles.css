@@ -87,8 +87,28 @@ main {
 	color: rgba(88, 10, 10, 1);
 }
 
-.add_item_form {
+.em_form {
 	height: 380px;
+}
+
+#title.item_name {
+	grid-row: 1;
+}
+
+#periodicity.item_name {
+	grid-row: 2;
+}
+
+.add_item_form {
+	height: 500px;
+}
+
+.todo_category_select_form {
+	grid-row: 3;
+}
+
+.add_item_buttons {
+	grid-row: 4;
 }
 
 
@@ -140,6 +160,6 @@ main {
 	}
 
 	.add_item_form {
-		height: 600px;
+		height: 800px;
 	}
 }

@@ -150,7 +150,20 @@
             <input type="text" name="item_title" id="item_title" required>
         </div>
 
-        <div>
+        <div class="todo_category_select_form">
+            <div>
+            <input type="checkbox" id="category_of_todo_1"
+                     name="category_of_todo" value="important">
+            <label for="category_of_todo_1">Important</label>
+                </div>
+            <div>
+            <input type="checkbox" id="category_of_todo_2"
+                     name="category_of_items" value="urgent">
+            <label for="category_of_todo_2">Urgent</label>
+                </div>
+        </div>
+
+        <div class="add_item_buttons">
             <input class="button_to_cancel" type="submit" value="Cancel">
             <input class="button_to_submit" type="submit" value="Add">
         </div>

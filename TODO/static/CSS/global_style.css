@@ -96,6 +96,7 @@ body {
 }
 
 .add_item_form {
+	display: grid;
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -105,13 +106,14 @@ body {
     margin: auto;
 	text-align: center;
 	width: 750px;
-	height: 300px;
+	height: 400px;
 	border-radius: 8px;
 	background: rgba(232, 161, 131, 1);
 	z-index: 3;
 }
 
 .item_name {
+	grid-row: 1;
 	margin-top: 15px;
 }
 
@@ -129,7 +131,10 @@ body {
 .item_name > label {
 	font-size: 30px;
 	width: 240px;
-	display: inline-block;
+}
+
+.add_item_buttons {
+	grid-row: 3;
 }
 
 .button_to_submit {
@@ -147,6 +152,18 @@ body {
 
 .button_to_cancel:hover {
     background-color: rgba(141, 55, 28, 1);
+}
+
+.todo_category_select_form {
+	margin-top: 20px;
+	font-size: 25px;
+	grid-row: 2;
+}
+
+.todo_category_select_form > div > input {
+	width: 18px;
+	height: 18px;
+	margin-right: 10px;
 }
 
 
@@ -217,7 +234,7 @@ body {
 	}
 
 	.add_item_form {
-		height: 400px;
+		height: 600px;
 		width: 900px;
 	}
 
@@ -235,4 +252,13 @@ body {
 		font-size: 50px;
 	}
 
+	.todo_category_select_form {
+		font-size: 40px;
+	}
+
+	.todo_category_select_form > div > input {
+		width: 30px;
+		height: 30px;
+		margin-right: 30px;
+	}
 }

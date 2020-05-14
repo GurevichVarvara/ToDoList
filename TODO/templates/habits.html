@@ -102,17 +102,35 @@
     <div class="gray_background"></div>
 
     <form class="add_item_form">
-        <div class="item_name">
+        <div class="item_name" id="title">
             <label for="item_title">New Habit Title</label>
             <input type="text" name="item_title" id="item_title" required>
         </div>
 
-        <div class="item_name">
+        <div class="item_name" id="periodicity">
             <label for="item_days">Periodicity (days)</label>
             <input type="number" name="item_title" id="item_days" required>
         </div>
 
-        <div>
+        <div class="todo_category_select_form">
+            <div>
+                <input type="radio" id="category_of_habit_1"
+                         name="category_of_habit" value="easy">
+                <label for="category_of_habit_1">Easy</label>
+            </div>
+            <div>
+                <input type="radio" id="category_of_habit_1"
+                         name="category_of_habit" value="medium">
+                <label for="category_of_habit_1">Medium</label>
+            </div>
+            <div>
+                <input type="radio" id="category_of_habit_1"
+                         name="category_of_habit" value="hard">
+                <label for="category_of_habit_1">Hard</label>
+            </div>
+        </div>
+
+        <div class="add_item_buttons">
             <input class="button_to_cancel" type="submit" value="Cancel">
             <input class="button_to_submit" type="submit" value="Add">
         </div>

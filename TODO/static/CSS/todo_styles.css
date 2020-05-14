@@ -29,12 +29,12 @@ main {
 }
 
 .todo-item {
-	background: rgba(221, 76, 14);
+	background: rgba(221, 76, 14, 1);
 	opacity: 0.9;
 }
 
 .complited-todo-item {
-	background: rgba(14, 221, 35);
+	background: rgba(14, 221, 35, 1);
 	opacity: 0.8;
 }
 
@@ -175,8 +175,6 @@ main {
 .add_todo_button:hover {
 	padding: 13px;
 }
-
-
 
 
 @media (max-width: 980px) {

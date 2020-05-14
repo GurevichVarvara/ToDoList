@@ -175,7 +175,7 @@ main {
 }
 
 .add_todo_button:hover {
-	padding: 13px;
+	background: rgba(221, 76, 14, 0.8);
 }
 
 

@@ -66,6 +66,21 @@ function get_item_title() {
     return item_title_input.value;
 }
 
+function send_item_data_to_server(url, data) {
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(data)
+    }).then(function (response) {
+        if (response.ok) {
+            return true;
+        }
+    });
+
+}
+
 function add_todo(event) {
     event.preventDefault();
 
@@ -79,8 +94,15 @@ function add_todo(event) {
     });
 
     category = category.substring(0, category.length - 1);
-    append_todo_item_to_DOM(todo_title, category);
 
+    let todo_data = {
+        type: 'todo',
+        title: todo_title,
+        category: category
+    };
+    send_item_data_to_server(`${window.origin}/`, todo_data)
+
+    append_todo_item_to_DOM(todo_title, category);
     finish_work_with_add_todo_form();
 }
 

@@ -19,9 +19,18 @@ def login_required(f):
     return wrap
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
+    if request.method == 'POST':
+        item_data = request.get_json()
+
+        if item_data['type'] == 'todo':
+            result_of_adding = Database.get_instance().add_todo_to_user(session['username'], item_data['title'], item_data['category'])
+            response = make_response(200) if result_of_adding else make_response(400)
+
+        return response
+
     return render_template('todos.html')
 
 
@@ -70,8 +79,8 @@ def logout():
 
 def get_response_to_front(response_from_db):
     # database response is user's id
-    if isinstance(response_from_db, int):
-        session['user_id'] = response_from_db
+    if response_from_db != 'This user name already exists' and response_from_db != 'Username and password combination is not valid':
+        session['username'] = response_from_db
         session['logged_in'] = True
         response = make_response(jsonify({"message": "ok"}), 200)
 

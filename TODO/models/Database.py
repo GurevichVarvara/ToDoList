@@ -33,7 +33,7 @@ class Database:
 
             self._save_to_db()
 
-            response = id(new_user)
+            response = username
 
         return response
 
@@ -44,9 +44,16 @@ class Database:
 
         response = 'Username and password combination is not valid'
         if user:
-            response = id(user)
+            response = username
 
         return response
+
+    def add_todo_to_user(self, username, todo_title, todo_category):
+        user = self.users[username]
+        user.add_todo(todo_title, todo_category)
+        self._save_to_db()
+
+        return True
 
 
 

@@ -18,3 +18,6 @@ class User:
 
     def get_all_todos(self):
         return [todo for todo in self.todos if not todo.is_in_trash and not todo.is_removed]
+
+    def get_all_habits(self):
+        return [habit for habit in self.habits if not habit.is_in_trash and not habit.is_removed]

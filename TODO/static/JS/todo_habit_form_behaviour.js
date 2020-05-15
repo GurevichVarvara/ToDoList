@@ -4,6 +4,9 @@ window.onload=function() {
 
     if (add_todo_form) {
         add_todo_form.addEventListener('submit', add_todo);
+
+        let todos = '{{todos}}'.json();
+        console.log(todos);
     }
 
     if (add_habit_form) {
@@ -66,7 +69,7 @@ function get_item_title() {
     return item_title_input.value;
 }
 
-function send_item_data_to_server(url, data) {
+function connect_to_server(url, data) {
     fetch(url, {
         method: "POST",
         headers: {
@@ -99,7 +102,7 @@ function add_todo(event) {
         title: todo_title,
         category: category
     };
-    send_item_data_to_server(`${window.origin}/`, todo_data);
+    connect_to_server(`${window.origin}/`, todo_data);
 
     append_todo_item_to_DOM(todo_title, category);
     finish_work_with_add_todo_form();
@@ -117,7 +120,7 @@ function add_habit(event) {
         category: habit_category,
         periodicity: periodicity
     };
-    send_item_data_to_server(`${window.origin}/habits`, habit_data);
+    connect_to_server(`${window.origin}/habits`, habit_data);
 
     append_habit_item_to_DOM(habit_title, habit_category, periodicity);
     finish_work_with_add_habit_form();

@@ -62,5 +62,24 @@ class Database:
 
         return True
 
+    def get_all_users_todos(self, username):
+        user = self.users[username]
+
+        return user.get_all_todos()
+
+    def get_all_users_habits(self, username):
+        user = self.users[username]
+
+        return user.get_all_habits()
+
+    def get_json_todo(self, todo):
+        return {'id': id(todo), 'title': todo.title, 'category': todo.category, 'completed': todo.is_completed}
+
+    def get_all_users_todos_json(self, username):
+        all_active_todos = self.get_all_users_todos(username)
+
+        return list(map(self.get_json_todo, all_active_todos))
+
+
 
 

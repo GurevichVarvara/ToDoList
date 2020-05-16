@@ -61,89 +61,32 @@
                 <p>Not Important, Not Urgent</p>
             </div>
 
-            <section class="todo-category" id="important-urgent">
-                <ol class="important-urgent-list">
-                    {% for todo in mportant_urgent_todos %}
-                        {% if todo.completed %}
-                            <div class="complited-todo-item">
-                        {% else %}
-                            <div class="todo-item">
-                        {% endif %}
-                            <p class="todo-item-title">{{ todo.title }}</p>
-                            <div class="todo-item__controls">
-                                <button class="todo-item-button todo-item-button--done"/>
-                                    <i class="material-icons">done_outline</i>
-                                </button>
-                                <button class="todo-item-button todo-item-button--delete"/>
-                                    <i class="material-icons">delete</i>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </ol>
-            </section>
+            {% for category in ['important-urgent', 'not-important-urgent', 'important-not-urgent', 'not-important-not-urgent'] %}
+                <section class="todo-category" id={{ category }}>
+                    <ol class={{ category + '-list' }}>
+                        {% for todo in all_active_todos %}
+                            {% if todo.category == category %}
+                                {% if todo.completed %}
+                                    <div class="complited-todo-item">
+                                {% else %}
+                                    <div class="todo-item">
+                                {% endif %}
+                                    <p class="todo-item-title">{{ todo.title }}</p>
+                                    <div class="todo-item__controls">
+                                        <button class="todo-item-button todo-item-button--done"/>
+                                            <i class="material-icons">done_outline</i>
+                                        </button>
+                                        <button class="todo-item-button todo-item-button--delete"/>
+                                            <i class="material-icons">delete</i>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                </section>
+            {% endfor %}
 
-            <section class="todo-category" id="not-important-urgent">
-                <ol class="not-important-urgent-list">
-                    {% for todo in not_important_urgent_todos %}
-                        {% if todo.completed %}
-                            <div class="complited-todo-item">
-                        {% else %}
-                            <div class="todo-item">
-                        {% endif %}
-                            <p class="todo-item-title">{{ todo.title }}</p>
-                            <div class="todo-item__controls">
-                                <button class="todo-item-button todo-item-button--done"/>
-                                    <i class="material-icons">done_outline</i>
-                                </button>
-                                <button class="todo-item-button todo-item-button--delete"/>
-                                    <i class="material-icons">delete</i>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </ol>
-            </section>
 
-            <section class="todo-category" id="important-not-urgent">
-                <ol class="important-not-urgent-list">
-                    {% for todo in important_not_urgent_todos %}
-                        {% if todo.completed %}
-                            <div class="complited-todo-item">
-                        {% else %}
-                            <div class="todo-item">
-                        {% endif %}
-                            <p class="todo-item-title">{{ todo.title }}</p>
-                            <div class="todo-item__controls">
-                                <button class="todo-item-button todo-item-button--done"/>
-                                    <i class="material-icons">done_outline</i>
-                                </button>
-                                <button class="todo-item-button todo-item-button--delete"/>
-                                    <i class="material-icons">delete</i>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </ol>
-            </section>
-
-            <section class="todo-category" id="not-important-not-urgent">
-                <ol class="not-important-not-urgent-list">
-                    {% for todo in not_important_not_urgent_todos %}
-                        {% if todo.completed %}
-                            <div class="complited-todo-item">
-                        {% else %}
-                            <div class="todo-item">
-                        {% endif %}
-                            <p class="todo-item-title">{{ todo.title }}</p>
-                            <div class="todo-item__controls">
-                                <button class="todo-item-button todo-item-button--done"/>
-                                    <i class="material-icons">done_outline</i>
-                                </button>
-                                <button class="todo-item-button todo-item-button--delete"/>
-                                    <i class="material-icons">delete</i>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </ol>
-            </section>
         </div>
 
         <button class="add_todo_button" id="down" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>

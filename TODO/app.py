@@ -30,12 +30,7 @@ def index():
         return response
 
     all_active_todos = Database.get_instance().get_all_users_todos_json(session['username'])
-    important_urgent_todos = list(filter(lambda x: x['category'] == 'important-urgent', all_active_todos))
-    not_important_urgent_todos = list(filter(lambda x: x['category'] == 'not-important-urgent', all_active_todos))
-    important_not_urgent_todos = list(filter(lambda x: x['category'] == 'important-not-urgent', all_active_todos))
-    not_important_not_urgent_todos = list(filter(lambda x: x['category'] == 'not-important-not-urgent', all_active_todos))
-    return render_template('todos.html', important_urgent_todos=important_urgent_todos, not_important_urgent_todos=not_important_urgent_todos,
-                           important_not_urgent_todos=important_not_urgent_todos, not_important_not_urgent_todos=not_important_not_urgent_todos)
+    return render_template('todos.html', all_active_todos=all_active_todos)
 
 
 @app.route('/register', methods=['GET', 'POST'])

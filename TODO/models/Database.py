@@ -2,6 +2,7 @@ from passlib.hash import sha256_crypt
 from models.User import User
 import pickle
 import os
+import datetime
 
 
 class Database:
@@ -49,18 +50,28 @@ class Database:
         return response
 
     def add_todo_to_user(self, username, todo_title, todo_category):
-        user = self.users[username]
-        user.add_todo(todo_title, todo_category)
-        self._save_to_db()
+        response = 'Incorrect todo item format'
 
-        return True
+        if len(todo_title) > 0 and len(todo_category):
+            user = self.users[username]
+            new_todo_id = user.add_todo(todo_title, todo_category)
+            self._save_to_db()
+
+            response = new_todo_id
+
+        return response
 
     def add_habit_to_user(self, username, habit_title, habit_category, habit_periodicity):
-        user = self.users[username]
-        user.add_habit(habit_title, habit_category, habit_periodicity)
-        self._save_to_db()
+        response = 'Incorrect habit item format'
 
-        return True
+        if len(habit_title) > 0 and len(habit_category) > 0 and habit_periodicity:
+            user = self.users[username]
+            new_habit_id = user.add_habit(habit_title, habit_category, habit_periodicity)
+            self._save_to_db()
+
+            response = new_habit_id
+
+        return response
 
     def get_all_active_users_todos(self, username):
         user = self.users[username]
@@ -81,8 +92,7 @@ class Database:
         return user.get_all_active_habits()
 
     def get_json_habit(self, habit):
-        # change completion status
-        return {'id': id(habit), 'title': habit.title, 'category': habit.category, 'completed': False }
+        return {'id': id(habit), 'title': habit.title, 'category': habit.category, 'completed': habit.is_habit_completed() }
 
     def get_all_users_habits_json(self, username):
         all_active_habits = self.get_all_active_users_habits(username)
@@ -96,6 +106,12 @@ class Database:
 
         return result_of_operation
 
+    def complete_user_habit(self, username, habit_id):
+        user = self.users[username]
+        result_of_operation = user.complete_habit(habit_id)
+        self._save_to_db()
+
+        return result_of_operation
 
 
 

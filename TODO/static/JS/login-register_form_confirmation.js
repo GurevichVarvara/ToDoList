@@ -52,7 +52,6 @@ function connect_to_server(url, entry) {
         body: JSON.stringify(entry)
     }).then(response => response.json())
     .then(function(data) {
-        console.log(data);
         if (data["message"] === "ok") {
             window.location.replace(`${window.origin}/`);
         }

@@ -26,17 +26,26 @@ def index():
         client_data = request.get_json()
 
         if client_data['operation_type'] == 'add':
-            result_of_adding = Database.get_instance().add_todo_to_user(session['username'], client_data['title'], client_data['category'])
-            response = make_response(jsonify({"message": "Success"}), 200) if result_of_adding else make_response(jsonify({"message": "Incorrect todo item format"}), 400)
+            response_from_db = Database.get_instance().add_todo_to_user(session['username'], client_data['title'], client_data['category'])
+            response = get_adding_item_response_to_front(response_from_db)
         elif client_data['operation_type'] == 'complete':
-            result_of_completing = Database.get_instance().complete_user_todo(session['username'], client_data['todo_id'])
-            response = make_response(jsonify({"message": "Success"}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that todo"}), 400)
+            result_of_completing = Database.get_instance().complete_user_todo(session['username'], client_data['item_id'])
+            response = make_response(jsonify({"message": "ok"}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that todo"}), 400)
 
         return response
 
     all_active_todos = Database.get_instance().get_all_users_todos_json(session['username'])
 
     return render_template('todos.html', all_active_todos=all_active_todos)
+
+
+def get_adding_item_response_to_front(response_from_db):
+    if response_from_db != 'Incorrect todo item format' and response_from_db != 'Incorrect habit item format':
+        response = make_response(jsonify({"message": "ok", "id": response_from_db}), 200)
+    else:
+        response = make_response(jsonify({"message": response_from_db}), 400)
+
+    return response
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -55,7 +64,7 @@ def register():
 
         response_from_db = Database.get_instance().create_user(entry['username'], entry['password'])
 
-        return get_response_to_front(response_from_db)
+        return get_login_response_to_front(response_from_db)
 
     return render_template('register.html')
 
@@ -70,7 +79,7 @@ def login():
 
         response_from_db = Database.get_instance().if_user_exists(entry['username'], entry['password'])
 
-        return get_response_to_front(response_from_db)
+        return get_login_response_to_front(response_from_db)
 
     return render_template('login.html')
 
@@ -82,7 +91,7 @@ def logout():
     return redirect(url_for('login'))
 
 
-def get_response_to_front(response_from_db):
+def get_login_response_to_front(response_from_db):
     # database response is user's id
     if response_from_db != 'This user name already exists' and response_from_db != 'Username and password combination is not valid':
         session['username'] = response_from_db
@@ -100,9 +109,14 @@ def get_response_to_front(response_from_db):
 @login_required
 def habits():
     if request.method == 'POST':
-        item_data = request.get_json()
-        result_of_adding = Database.get_instance().add_habit_to_user(session['username'], item_data['title'], item_data['category'], item_data['periodicity'])
-        response = make_response(200) if result_of_adding else make_response(400)
+        client_data = request.get_json()
+
+        if client_data['operation_type'] == 'add':
+            response_from_db = Database.get_instance().add_habit_to_user(session['username'], client_data['title'], client_data['category'], client_data['periodicity'])
+            response = get_adding_item_response_to_front(response_from_db)
+        elif client_data['operation_type'] == 'complete':
+            result_of_completing = Database.get_instance().complete_user_habit(session['username'], client_data['item_id'])
+            response = make_response(jsonify({"message": "ok"}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that habit"}), 400)
 
         return response
 

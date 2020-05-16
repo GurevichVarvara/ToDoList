@@ -42,7 +42,7 @@
                         class="completed-habit"
                     {% else %}
                         class="habit"
-                    {% endif %}>
+                    {% endif %} id="{{ habit.id }}">
                     <p class="habit-title">{{ habit.title }}</p>
 
                     <div class="habit-category">
@@ -55,7 +55,7 @@
                         <p>You can take a break from this task for 2 days</p>
                     </div>
 
-                    <button class="habit-done-button">
+                    <button class="habit-done-button" onclick="complete_habit({{ habit.id }})">
                         <i class="material-icons">done_outline</i>
                     </button>
 

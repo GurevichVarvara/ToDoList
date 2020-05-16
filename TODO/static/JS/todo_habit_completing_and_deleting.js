@@ -1,13 +1,27 @@
-function complete_todo(id) {
-    let todo_data = {
+function complete_item(url, id, name_of_completed_div_class) {
+    let item_data = {
         operation_type: 'complete',
-        todo_id: id
+        item_id: id,
+        name_of_completed_div_class: name_of_completed_div_class
     };
 
-    connect_to_server(`${window.origin}/`, todo_data, change_todo_div_to_completed(id));
+    connect_to_server_to_complete_delete(url, item_data);
 }
 
-function connect_to_server(url, data, success_function) {
+function change_item_div_to_completed(id, name_of_completed_class) {
+    let item = document.getElementById(`${id}`);
+    item.className = name_of_completed_class;
+}
+
+function complete_todo(id) {
+    complete_item(`${window.origin}/`, id, "complited-todo-item");
+}
+
+function complete_habit(id) {
+    complete_item(`${window.origin}/habits`, id, "completed-habit");
+}
+
+function connect_to_server_to_complete_delete(url, data) {
     fetch(url, {
         method: "POST",
         headers: {
@@ -16,15 +30,7 @@ function connect_to_server(url, data, success_function) {
         body: JSON.stringify(data)
     }).then(function (response) {
         if (response.ok) {
-            success_function();
-        }
-        else {
-            console.log('error');
+            change_item_div_to_completed(data.item_id, data.name_of_completed_div_class)
         }
     });
-}
-
-function change_todo_div_to_completed(id) {
-    let todo_div = document.getElementById(`${id}`);
-    todo_div.className = "complited-todo-item";
 }

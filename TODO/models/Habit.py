@@ -13,6 +13,10 @@ class Habit:
         self.completion_date = datetime.datetime.now()
 
     def is_habit_completed(self):
-        return (False if not self.completion_date else \
-                (True if (datetime.datetime.now() - self.completion_date).days <= self.periodicity else False))
+        is_completed = False if not self.completion_date else \
+                        (True if (datetime.datetime.now() - self.completion_date).days <= self.periodicity else False)
+
+        days_left = (self.periodicity - (datetime.datetime.now() - self.completion_date).days) if is_completed else None
+
+        return {'is_completed': is_completed, 'days_left': days_left}
 

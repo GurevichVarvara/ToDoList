@@ -52,7 +52,7 @@
 
 
                     <div class="completed-habit-text">
-                        <p>You can take a break from this task for 2 days</p>
+                        <p id="habit_days_left-{{ habit.id }}">You can take a break from this task for {{ habit.days_left }} days</p>
                     </div>
 
                     <button class="habit-done-button" onclick="complete_habit({{ habit.id }})">

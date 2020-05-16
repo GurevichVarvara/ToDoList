@@ -92,7 +92,9 @@ class Database:
         return user.get_all_active_habits()
 
     def get_json_habit(self, habit):
-        return {'id': id(habit), 'title': habit.title, 'category': habit.category, 'completed': habit.is_habit_completed() }
+        completion_state = habit.is_habit_completed()
+
+        return {'id': id(habit), 'title': habit.title, 'category': habit.category, 'completed': completion_state['is_completed'], 'days_left': completion_state['days_left']}
 
     def get_all_users_habits_json(self, username):
         all_active_habits = self.get_all_active_users_habits(username)
@@ -112,6 +114,11 @@ class Database:
         self._save_to_db()
 
         return result_of_operation
+
+    def get_habit_periodicity_by_id(self, username, habit_id):
+        user = self.users[username]
+
+        return user.get_habit_periodicity_by_id(habit_id)
 
 
 

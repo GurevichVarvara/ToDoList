@@ -50,7 +50,7 @@ function append_habit_item_to_DOM(habit_id, habit_title, category, periodicity) 
                                 <p>You can take a break from this task for ${periodicity} days</p>
                             </div>
             
-                            <button class="habit-done-button" >
+                            <button class="habit-done-button" onclick="complete_habit(${habit_id})">
                                 <i class="material-icons">done_outline</i>
                             </button>
                                     

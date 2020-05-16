@@ -30,7 +30,8 @@ def index():
             response = get_adding_item_response_to_front(response_from_db)
         elif client_data['operation_type'] == 'complete':
             result_of_completing = Database.get_instance().complete_user_todo(session['username'], client_data['item_id'])
-            response = make_response(jsonify({"message": "ok"}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that todo"}), 400)
+            response = make_response(jsonify({"message": "ok"}), 200) if result_of_completing else make_response(jsonify(
+                {"message": "Something with completing that todo"}), 400)
 
         return response
 
@@ -112,11 +113,13 @@ def habits():
         client_data = request.get_json()
 
         if client_data['operation_type'] == 'add':
-            response_from_db = Database.get_instance().add_habit_to_user(session['username'], client_data['title'], client_data['category'], client_data['periodicity'])
+            response_from_db = Database.get_instance().add_habit_to_user(session['username'], client_data['title'], client_data['category'], int(client_data['periodicity']))
             response = get_adding_item_response_to_front(response_from_db)
         elif client_data['operation_type'] == 'complete':
             result_of_completing = Database.get_instance().complete_user_habit(session['username'], client_data['item_id'])
-            response = make_response(jsonify({"message": "ok"}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that habit"}), 400)
+            habit_periodicity = Database.get_instance().get_habit_periodicity_by_id(session['username'], client_data['item_id'])
+            response = make_response(jsonify({"message": "ok", "habit_periodicity": habit_periodicity}), 200) if result_of_completing else make_response(
+                jsonify({"message": "Something with completing that habit"}), 400)
 
         return response
 

@@ -21,3 +21,12 @@ class User:
 
     def get_all_active_habits(self):
         return [habit for habit in self.habits if not habit.is_in_trash and not habit.is_removed]
+
+    def complete_todo(self, todo_id):
+        target_todo = next((todo for todo in self.todos if id(todo) == todo_id), None)
+
+        if target_todo:
+            target_todo.is_completed = True
+
+        return True if target_todo else False
+

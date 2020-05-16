@@ -4,9 +4,6 @@ window.onload=function() {
 
     if (add_todo_form) {
         add_todo_form.addEventListener('submit', add_todo);
-
-        let todos = '{{todos}}'.json();
-        console.log(todos);
     }
 
     if (add_habit_form) {
@@ -80,6 +77,9 @@ function connect_to_server(url, data) {
         if (response.ok) {
             return true;
         }
+        else {
+            return false;
+        }
     });
 
 }
@@ -99,6 +99,7 @@ function add_todo(event) {
     category = category.substring(0, category.length - 1);
 
     let todo_data = {
+        operation_type: 'add',
         title: todo_title,
         category: category
     };
@@ -116,6 +117,7 @@ function add_habit(event) {
     const periodicity = document.getElementById("item_days").value;
 
     let habit_data = {
+        operation_type: 'add',
         title: habit_title,
         category: habit_category,
         periodicity: periodicity

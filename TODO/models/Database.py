@@ -89,6 +89,13 @@ class Database:
 
         return list(map(self.get_json_habit, all_active_habits))
 
+    def complete_user_todo(self, username, todo_id):
+        user = self.users[username]
+        result_of_operation = user.complete_todo(todo_id)
+        self._save_to_db()
+
+        return result_of_operation
+
 
 
 

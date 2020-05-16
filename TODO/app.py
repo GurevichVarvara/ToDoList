@@ -23,9 +23,14 @@ def login_required(f):
 @login_required
 def index():
     if request.method == 'POST':
-        item_data = request.get_json()
-        result_of_adding = Database.get_instance().add_todo_to_user(session['username'], item_data['title'], item_data['category'])
-        response = make_response(200) if result_of_adding else make_response(400)
+        client_data = request.get_json()
+
+        if client_data['operation_type'] == 'add':
+            result_of_adding = Database.get_instance().add_todo_to_user(session['username'], client_data['title'], client_data['category'])
+            response = make_response(jsonify({"message": "Success"}), 200) if result_of_adding else make_response(jsonify({"message": "Incorrect todo item format"}), 400)
+        elif client_data['operation_type'] == 'complete':
+            result_of_completing = Database.get_instance().complete_user_todo(session['username'], client_data['todo_id'])
+            response = make_response(jsonify({"message": "Success"}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that todo"}), 400)
 
         return response
 

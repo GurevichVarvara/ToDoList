@@ -4,14 +4,10 @@ function complete_todo(id) {
         todo_id: id
     };
 
-    let server_response = connect_to_server(`${window.origin}/`, todo_data);
-
-    if (server_response) {
-        alert('eeeah');
-    }
+    connect_to_server(`${window.origin}/`, todo_data, change_todo_div_to_completed(id));
 }
 
-function connect_to_server(url, data) {
+function connect_to_server(url, data, success_function) {
     fetch(url, {
         method: "POST",
         headers: {
@@ -20,12 +16,15 @@ function connect_to_server(url, data) {
         body: JSON.stringify(data)
     }).then(function (response) {
         if (response.ok) {
-            console.log('success');
-            return true;
+            success_function();
         }
         else {
-            return false;
+            console.log('error');
         }
     });
+}
 
+function change_todo_div_to_completed(id) {
+    let todo_div = document.getElementById(`${id}`);
+    todo_div.className = "complited-todo-item";
 }

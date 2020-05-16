@@ -37,7 +37,7 @@ function connect_to_server_to_complete_delete(url, item_data) {
     }).then(response => response.json()).then(function (data) {
         if (data['message'] === 'ok') {
             if (item_data.item_type === "habit") {
-                change_completion_state_of_habit(item_data.item_id, data['habit_periodicity']);
+                change_completion_state_of_habit(item_data.item_id, data['habit_left_days']);
             }
 
             change_item_div_to_completed(item_data.item_id, item_data.name_of_completed_div_class);

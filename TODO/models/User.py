@@ -42,8 +42,8 @@ class User:
 
         return True if target_habit else False
 
-    def get_habit_periodicity_by_id(self, habit_id):
+    def get_habit_left_days_by_id(self, habit_id):
         target_habit = next((habit for habit in self.habits if id(habit) == habit_id), None)
 
-        return id(target_habit) if target_habit else None
+        return target_habit.is_habit_completed()['days_left'] if target_habit else None
 

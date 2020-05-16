@@ -1,5 +1,6 @@
 import datetime
 
+
 class Habit:
     def __init__(self, title, category, periodicity):
         self.title = title

@@ -115,10 +115,10 @@ class Database:
 
         return result_of_operation
 
-    def get_habit_periodicity_by_id(self, username, habit_id):
+    def get_habit_left_days_by_id(self, username, habit_id):
         user = self.users[username]
 
-        return user.get_habit_periodicity_by_id(habit_id)
+        return user.get_habit_left_days_by_id(habit_id)
 
 
 

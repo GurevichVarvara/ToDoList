@@ -117,9 +117,8 @@ def habits():
             response = get_adding_item_response_to_front(response_from_db)
         elif client_data['operation_type'] == 'complete':
             result_of_completing = Database.get_instance().complete_user_habit(session['username'], client_data['item_id'])
-            habit_periodicity = Database.get_instance().get_habit_periodicity_by_id(session['username'], client_data['item_id'])
-            response = make_response(jsonify({"message": "ok", "habit_periodicity": habit_periodicity}), 200) if result_of_completing else make_response(
-                jsonify({"message": "Something with completing that habit"}), 400)
+            habit_left_days = Database.get_instance().get_habit_left_days_by_id(session['username'], client_data['item_id'])
+            response = make_response(jsonify({"message": "ok", "habit_left_days": habit_left_days}), 200) if result_of_completing else make_response(jsonify({"message": "Something with completing that habit"}), 400)
 
         return response
 

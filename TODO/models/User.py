@@ -16,8 +16,8 @@ class User:
         new_habit = Habit(title, category, periodicity)
         self.habits.append(new_habit)
 
-    def get_all_todos(self):
+    def get_all_active_todos(self):
         return [todo for todo in self.todos if not todo.is_in_trash and not todo.is_removed]
 
-    def get_all_habits(self):
+    def get_all_active_habits(self):
         return [habit for habit in self.habits if not habit.is_in_trash and not habit.is_removed]

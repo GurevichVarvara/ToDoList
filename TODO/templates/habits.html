@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/habits_styles.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
-    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_behaviour.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_form_behaviour.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -35,7 +35,35 @@
     <main>
         <button class="add_todo_button" onclick="change_add_item_form_visibility_state('grid')">Add Habit</button>
 
-        <div class="habits-container"></div>
+        <div class="habits-container">
+            {% for habit in all_active_habits %}
+                <div {% if habit.completed %}
+                        class="completed-habit"
+                    {% else %}
+                        class="habit"
+                    {% endif %}>
+                    <p class="habit-title">{{ habit.title }}</p>
+
+                    <div class="habit-category">
+                        <div class="bg"></div>
+                        <div class="habit-categoty-text">{{ habit.category }}</div>
+                    </div>
+
+
+                    <div class="completed-habit-text">
+                        <p>You can take a break from this task for 2 days</p>
+                    </div>
+
+                    <button class="habit-done-button">
+                        <i class="material-icons">done_outline</i>
+                    </button>
+
+                    <button class="habit-delete-button">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
     </main>
 
     <div class="gray_background" id="gray_background"></div>

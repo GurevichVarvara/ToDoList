@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/todo_styles.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
-    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_behaviour.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_form_behaviour.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -66,18 +66,20 @@
                     <ol class={{ category + '-list' }}>
                         {% for todo in all_active_todos %}
                             {% if todo.category == category %}
-                                {% if todo.completed %}
-                                    <div class="complited-todo-item">
-                                {% else %}
-                                    <div class="todo-item">
-                                {% endif %}
-                                    <p class="todo-item-title">{{ todo.title }}</p>
-                                    <div class="todo-item__controls">
-                                        <button class="todo-item-button todo-item-button--done"/>
-                                            <i class="material-icons">done_outline</i>
-                                        </button>
-                                        <button class="todo-item-button todo-item-button--delete"/>
-                                            <i class="material-icons">delete</i>
+                                <div {% if todo.completed %}
+                                        class="complited-todo-item"
+                                     {% else %}
+                                        class="todo-item"
+                                     {% endif %}>
+
+                                <p class="todo-item-title">{{ todo.title }}</p>
+                                <div class="todo-item__controls">
+                                    <button class="todo-item-button todo-item-button--done">
+                                        <i class="material-icons">done_outline</i>
+                                    </button>
+                                    <button class="todo-item-button todo-item-button--delete">
+                                        <i class="material-icons">delete</i>
+                                    </button>
                                     </div>
                                 </div>
                             {% endif %}

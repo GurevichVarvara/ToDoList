@@ -30,6 +30,7 @@ def index():
         return response
 
     all_active_todos = Database.get_instance().get_all_users_todos_json(session['username'])
+
     return render_template('todos.html', all_active_todos=all_active_todos)
 
 
@@ -100,7 +101,9 @@ def habits():
 
         return response
 
-    return render_template('habits.html')
+    all_active_habits = Database.get_instance().get_all_users_habits_json(session['username'])
+
+    return render_template('habits.html', all_active_habits=all_active_habits)
 
 
 @app.route('/trash')

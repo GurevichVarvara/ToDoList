@@ -62,23 +62,33 @@ class Database:
 
         return True
 
-    def get_all_users_todos(self, username):
+    def get_all_active_users_todos(self, username):
         user = self.users[username]
 
-        return user.get_all_todos()
-
-    def get_all_users_habits(self, username):
-        user = self.users[username]
-
-        return user.get_all_habits()
+        return user.get_all_active_todos()
 
     def get_json_todo(self, todo):
         return {'id': id(todo), 'title': todo.title, 'category': todo.category, 'completed': todo.is_completed}
 
     def get_all_users_todos_json(self, username):
-        all_active_todos = self.get_all_users_todos(username)
+        all_active_todos = self.get_all_active_users_todos(username)
 
         return list(map(self.get_json_todo, all_active_todos))
+
+    def get_all_active_users_habits(self, username):
+        user = self.users[username]
+
+        return user.get_all_active_habits()
+
+    def get_json_habit(self, habit):
+        # change completion status
+        return {'id': id(habit), 'title': habit.title, 'category': habit.category, 'completed': False }
+
+    def get_all_users_habits_json(self, username):
+        all_active_habits = self.get_all_active_users_habits(username)
+
+        return list(map(self.get_json_habit, all_active_habits))
+
 
 
 

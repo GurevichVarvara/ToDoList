@@ -8,6 +8,7 @@ class Habit:
         self.periodicity = periodicity
         self.completion_date = None
         self.is_in_trash = False
+        self.adding_to_trash_date = None
         self.is_removed = False
 
     def set_completion_date(self):

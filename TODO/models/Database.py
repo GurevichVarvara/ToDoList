@@ -1,5 +1,6 @@
 from passlib.hash import sha256_crypt
 from models.User import User
+from models.Todo import Todo
 import pickle
 import os
 import datetime
@@ -133,6 +134,17 @@ class Database:
         self._save_to_db()
 
         return True
+
+    def get_trash_items(self, username, todos=True, habits=True, is_recently_added_first=True):
+        user = self.users[username]
+
+        trash_todos = user.get_todos_in_trash()
+        trash_habits = user.get_habits_in_trash()
+
+        trash_items = (trash_todos + trash_habits) if todos and habits else (trash_todos if todos else trash_habits)
+        sorted_trash_items = sorted(trash_items, key=lambda item: item.adding_to_trash_date, reverse=is_recently_added_first)
+
+        return [{'title': item.title, 'type': ('Todo' if isinstance(item, Todo) else 'Habit')} for item in sorted_trash_items]
 
 
 

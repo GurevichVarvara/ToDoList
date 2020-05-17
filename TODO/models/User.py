@@ -64,5 +64,11 @@ class User:
         target_habit.adding_to_trash_date = datetime.datetime.now()
         target_habit.is_in_trash = True
 
+    def get_todos_in_trash(self):
+        return [todo for todo in self.todos if todo.is_in_trash and not todo.is_removed]
+
+    def get_habits_in_trash(self):
+        return [habit for habit in self.habits if habit.is_in_trash and not habit.is_removed]
+
 
 

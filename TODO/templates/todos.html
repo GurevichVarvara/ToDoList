@@ -73,14 +73,14 @@
                                         class="todo-item"
                                      {% endif %} id="{{ todo.id }}">
 
-                                <p class="todo-item-title">{{ todo.title }}</p>
-                                <div class="todo-item__controls">
-                                    <button class="todo-item-button todo-item-button--done" onclick="complete_todo({{ todo.id }})">
-                                        <i class="material-icons">done_outline</i>
-                                    </button>
-                                    <button class="todo-item-button todo-item-button--delete" onclick="delete_todo({{ todo.id }})">
-                                        <i class="material-icons">delete</i>
-                                    </button>
+                                    <p class="todo-item-title">{{ todo.title }}</p>
+                                    <div class="todo-item__controls">
+                                        <button class="todo-item-button todo-item-button--done" onclick="complete_todo({{ todo.id }})">
+                                            <i class="material-icons">done_outline</i>
+                                        </button>
+                                        <button class="todo-item-button todo-item-button--delete" onclick="delete_todo({{ todo.id }})">
+                                            <i class="material-icons">delete</i>
+                                        </button>
                                     </div>
                                 </div>
                             {% endif %}

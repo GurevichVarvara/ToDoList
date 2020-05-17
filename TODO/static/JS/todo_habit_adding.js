@@ -11,7 +11,7 @@ window.onload=function() {
     }
 }
 
-function change_add_item_form_visibility_state(state, event) {
+function change_add_item_form_visibility_state(state) {
     document.getElementById("gray_background").style.display = state;
     document.getElementsByClassName("add_item_form")[0].style.display = state;
 }

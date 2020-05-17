@@ -144,10 +144,12 @@ def habits():
     return render_template('habits.html', all_active_habits=all_active_habits)
 
 
-@app.route('/trash')
+@app.route('/trash', methods=['GET', 'POST'])
 @login_required
 def trash():
-    return render_template('trash.html')
+    trash_items = Database.get_instance().get_trash_items(session['username'])
+
+    return render_template('trash.html', trash_items=trash_items)
 
 
 if __name__ == '__main__':

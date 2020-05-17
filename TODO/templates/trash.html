@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/thash_styles.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/trash_page_select_type_form.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -31,25 +32,25 @@
     </header>
 
     <main>
-        <form class="select_trash_item_type_form">
+        <form class="select_trash_item_type_form" id="select_trash_item_type_form">
             <p>Please select what you category want to display</p>
             <div class="part_item_type_of_select_form">
                 <div id="todos_section"> 
-                    <input type="checkbox" id="category_of_items_1"
+                    <input type="checkbox" id="category_of_items_todos"
                      name="type_of_items" value="todos">
-                    <label for="category_of_items_1">Todo's</label>
+                    <label for="category_of_items_todos">Todo's</label>
                 </div>
 
                 <div id="habits_section">
-                    <input type="checkbox" id="category_of_items_2"
+                    <input type="checkbox" id="category_of_items_habits"
                      name="type_of_items" value="habits">
-                    <label for="category_of_items_2">Habits</label>
+                    <label for="category_of_items_habits">Habits</label>
                 </div>
 
                 <div id="all_section">
-                    <input type="checkbox" id="category_of_items_3"
-                     name="type_of_items" value="all">
-                    <label for="category_of_items_3">All</label>
+                    <input type="checkbox" id="category_of_items_all"
+                     name="type_of_items" value="all" checked>
+                    <label for="category_of_items_all">All</label>
                 </div>
             </div>
 
@@ -57,7 +58,7 @@
             <div class="part_date_of_select_form">
                 <div id="new-old_section">
                     <input type="radio" id="sorting_method_1"
-                     name="sorting_methods" value="new-old">
+                     name="sorting_methods" value="new-old" checked>
                     <label for="sorting_method_1">Recently added first</label>
                 </div>
 
@@ -71,25 +72,15 @@
             <input class="button_to_submit" type="submit" value="Show">
         </form>
 
-        <div class="trash-container">
-            <div class="trash-item">
-                <p class="trash-item-name">very very very very very very very long Todo 4</p>
-                <p class="trash-item-category">Todo</p>
-                <button class="trash-item-back-button">Back</button>
-                <button class="trash-item-delete-button">Remove permanently</button>
-            </div>
-            <div class="trash-item">
-                <p class="trash-item-name">Todo 5</p>
-                <p class="trash-item-category">Todo</p>
-                <button class="trash-item-back-button">Back</button>
-                <button class="trash-item-delete-button">Remove permanently</button>
-            </div>
-            <div class="trash-item">
-                <p class="trash-item-name">Task 4</p>
-                <p class="trash-item-category">Habit</p>
-                <button class="trash-item-back-button">Back</button>
-                <button class="trash-item-delete-button">Remove permanently</button>
-            </div>
+        <div class="trash-container" id="trash-container">
+            {% for item in trash_items %}
+                <div class="trash-item">
+                    <p class="trash-item-name">{{ item.title }}</p>
+                    <p class="trash-item-category">{{ item.type }}</p>
+                    <button class="trash-item-back-button">Back</button>
+                    <button class="trash-item-delete-button">Remove permanently</button>
+                </div>
+            {% endfor %}
         </div>
     </main>
 

@@ -54,15 +54,15 @@ class User:
 
         return target_habit.is_habit_completed()['days_left'] if target_habit else None
 
-    def move_todo_to_trash(self, todo_id):
+    def change_todo_trash_status(self, todo_id):
         target_todo = self.get_todo_by_id(todo_id)
-        target_todo.adding_to_trash_date = datetime.datetime.now()
-        target_todo.is_in_trash = True
+        target_todo.adding_to_trash_date = datetime.datetime.now() if not target_todo.adding_to_trash_date else None
+        target_todo.is_in_trash = True if target_todo.adding_to_trash_date else False
 
-    def move_habit_to_trash(self, habit_id):
+    def change_habit_trash_status(self, habit_id):
         target_habit = self.get_habit_by_id(habit_id)
-        target_habit.adding_to_trash_date = datetime.datetime.now()
-        target_habit.is_in_trash = True
+        target_habit.adding_to_trash_date = datetime.datetime.now() if not target_habit.adding_to_trash_date else None
+        target_habit.is_in_trash = True if target_habit.adding_to_trash_date else False
 
     def get_todos_in_trash(self):
         return [todo for todo in self.todos if todo.is_in_trash and not todo.is_removed]

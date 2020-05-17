@@ -35,9 +35,9 @@ def index():
                         result_of_completing, 'Something went wrong with completing that todo')
 
         elif client_data['operation_type'] == 'delete':
-            result_of_deleting = Database.get_instance().move_todo_to_trash(session['username'], client_data['item_id'])
+            result_of_deleting = Database.get_instance().change_todo_trash_status(session['username'], client_data['item_id'])
             response = get_plain_completing_and_deleting_response_to_front(
-                        result_of_deleting, 'Something went wrong with moving to trash that todo')
+                        result_of_deleting, 'Something went wrong with changing trash status of that todo')
 
         return response
 
@@ -133,9 +133,9 @@ def habits():
             response = make_response(jsonify({"message": "ok", "habit_left_days": habit_left_days}), 200) if result_of_completing else make_response(jsonify({"message": "Something went wrong with completing that habit"}), 400)
 
         elif client_data['operation_type'] == 'delete':
-            result_of_deleting = Database.get_instance().move_habit_to_trash(session['username'], client_data['item_id'])
+            result_of_deleting = Database.get_instance().change_habit_trash_status(session['username'], client_data['item_id'])
             response = get_plain_completing_and_deleting_response_to_front(
-                result_of_deleting, 'Something went wrong with moving to trash that habit')
+                result_of_deleting, 'Something went wrong with changing trash status of that habit')
 
         return response
 
@@ -149,12 +149,20 @@ def habits():
 def trash():
     if request.method == 'POST':
         client_data = request.get_json()
-        trash_items = Database.get_instance().get_trash_items(session['username'], todos=(client_data['items_type'] == 'all' or client_data['items_type'] == 'todos'),
-                                                                habits=(client_data['items_type'] == 'all' or client_data['items_type'] == 'habits'),
-                                                                is_recently_added_first=(client_data['sorted_type'] == 'new-old'))
 
-        response = make_response(jsonify({"message": "ok", "trash_items": trash_items}), 200) if trash_items else \
-                    make_response(jsonify({"message": "Something went wrong with changing types of trash items", "trash_items": trash_items}), 200)
+        if client_data['operation_type'] == 'change_type':
+            trash_items = Database.get_instance().get_trash_items(session['username'], todos=(client_data['items_type'] == 'all' or client_data['items_type'] == 'todos'),
+                                                                    habits=(client_data['items_type'] == 'all' or client_data['items_type'] == 'habits'),
+                                                                    is_recently_added_first=(client_data['sorted_type'] == 'new-old'))
+
+            response = make_response(jsonify({"message": "ok", "trash_items": trash_items}), 200) if trash_items else \
+                        make_response(jsonify({"message": "Something went wrong with changing types of trash items", "trash_items": trash_items}), 200)
+
+        elif client_data['operation_type'] == 'remove_from_trash':
+            result_of_deleting = Database.get_instance().change_todo_trash_status(session['username'],
+                                                                                  client_data['item_id'])
+            response = get_plain_completing_and_deleting_response_to_front(
+                result_of_deleting, 'Something went wrong with changing trash status of that todo')
 
         return response
 

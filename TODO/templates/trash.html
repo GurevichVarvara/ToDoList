@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/thash_styles.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
-    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/trash_page_select_type_form.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/trash_page.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -74,10 +74,10 @@
 
         <div class="trash-container" id="trash-container">
             {% for item in trash_items %}
-                <div class="trash-item">
+                <div class="trash-item" id="{{ item.id }}">
                     <p class="trash-item-name">{{ item.title }}</p>
                     <p class="trash-item-category">{{ item.type }}</p>
-                    <button class="trash-item-back-button">Back</button>
+                    <button class="trash-item-back-button" onclick="remove_from_trash_item({{ item.id }})">Back</button>
                     <button class="trash-item-delete-button">Remove permanently</button>
                 </div>
             {% endfor %}

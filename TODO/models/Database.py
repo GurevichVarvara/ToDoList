@@ -121,16 +121,16 @@ class Database:
 
         return user.get_habit_left_days_by_id(habit_id)
 
-    def move_todo_to_trash(self, username, todo_id):
+    def change_todo_trash_status(self, username, todo_id):
         user = self.users[username]
-        user.move_todo_to_trash(todo_id)
+        user.change_todo_trash_status(todo_id)
         self._save_to_db()
 
         return True
 
-    def move_habit_to_trash(self, username, habit_id):
+    def change_habit_trash_status(self, username, habit_id):
         user = self.users[username]
-        user.move_habit_to_trash(habit_id)
+        user.change_habit_trash_status(habit_id)
         self._save_to_db()
 
         return True
@@ -144,7 +144,7 @@ class Database:
         trash_items = (trash_todos + trash_habits) if todos and habits else (trash_todos if todos else trash_habits)
         sorted_trash_items = sorted(trash_items, key=lambda item: item.adding_to_trash_date, reverse=is_recently_added_first)
 
-        return [{'title': item.title, 'type': ('Todo' if isinstance(item, Todo) else 'Habit')} for item in sorted_trash_items]
+        return [{'id': id(item), 'title': item.title, 'type': ('Todo' if isinstance(item, Todo) else 'Habit')} for item in sorted_trash_items]
 
 
 

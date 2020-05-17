@@ -27,6 +27,24 @@ function complete_habit(id) {
     complete_item(`${window.origin}/habits`, id, "habit", "completed-habit");
 }
 
+function remove_item_div_from_DOM(id) {
+    let item_div = document.getElementById(id);
+    item_div.parentNode.removeChild(item_div);
+}
+
+function delete_item(url, id) {
+    let item_data = {
+        operation_type: 'delete',
+        item_id: id,
+    };
+
+    connect_to_server_to_complete_delete(url, item_data);
+}
+
+function delete_todo(id) {
+    delete_item(`${window.origin}/`, id);
+}
+
 function connect_to_server_to_complete_delete(url, item_data) {
     fetch(url, {
         method: "POST",
@@ -36,11 +54,16 @@ function connect_to_server_to_complete_delete(url, item_data) {
         body: JSON.stringify(item_data)
     }).then(response => response.json()).then(function (data) {
         if (data['message'] === 'ok') {
-            if (item_data.item_type === "habit") {
-                change_completion_state_of_habit(item_data.item_id, data['habit_left_days']);
-            }
+            if (item_data.operation_type === "complete") {
+                if (item_data.item_type === "habit") {
+                    change_completion_state_of_habit(item_data.item_id, data['habit_left_days']);
+                }
 
-            change_item_div_to_completed(item_data.item_id, item_data.name_of_completed_div_class);
+                change_item_div_to_completed(item_data.item_id, item_data.name_of_completed_div_class);
+            }
+            if (item_data.operation_type === "delete") {
+                remove_item_div_from_DOM(item_data.item_id);
+            }
         }
         else {
             alert(data['message']);

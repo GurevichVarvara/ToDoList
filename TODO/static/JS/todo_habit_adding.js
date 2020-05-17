@@ -26,7 +26,7 @@ function append_todo_item_to_DOM(todo_id, todo_title, category) {
                             <button class="todo-item-button todo-item-button--done" onclick="complete_todo(${todo_id})">
                               <i class="material-icons">done_outline</i>
                             </button>
-                            <button class="todo-item-button todo-item-button--delete">
+                            <button class="todo-item-button todo-item-button--delete" onclick="delete_todo(${todo_id})">
                               <i class="material-icons">delete</i>
                             </button>
                           </div>`;

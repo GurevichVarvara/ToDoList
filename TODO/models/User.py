@@ -26,8 +26,14 @@ class User:
     def get_all_active_habits(self):
         return [habit for habit in self.habits if not habit.is_in_trash and not habit.is_removed]
 
+    def get_todo_by_id(self, todo_id):
+        return next((todo for todo in self.todos if id(todo) == todo_id), None)
+
+    def get_habit_by_id(self, habit_id):
+        return next((habit for habit in self.habits if id(habit) == habit_id), None)
+
     def complete_todo(self, todo_id):
-        target_todo = next((todo for todo in self.todos if id(todo) == todo_id), None)
+        target_todo = self.get_todo_by_id(todo_id)
 
         if target_todo:
             target_todo.is_completed = True
@@ -35,7 +41,7 @@ class User:
         return True if target_todo else False
 
     def complete_habit(self, habit_id):
-        target_habit = next((habit for habit in self.habits if id(habit) == habit_id), None)
+        target_habit = self.get_habit_by_id(habit_id)
 
         if target_habit:
             target_habit.set_completion_date()
@@ -43,7 +49,13 @@ class User:
         return True if target_habit else False
 
     def get_habit_left_days_by_id(self, habit_id):
-        target_habit = next((habit for habit in self.habits if id(habit) == habit_id), None)
+        target_habit = self.get_habit_by_id(habit_id)
 
         return target_habit.is_habit_completed()['days_left'] if target_habit else None
+
+    def move_todo_to_trash(self, todo_id):
+        target_todo = self.get_todo_by_id(todo_id)
+        target_todo.is_in_trash = True
+
+
 

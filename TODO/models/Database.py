@@ -120,6 +120,13 @@ class Database:
 
         return user.get_habit_left_days_by_id(habit_id)
 
+    def move_todo_to_trash(self, username, todo_id):
+        user = self.users[username]
+        user.move_todo_to_trash(todo_id)
+        self._save_to_db()
+
+        return True
+
 
 
 

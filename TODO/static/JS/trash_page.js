@@ -46,7 +46,7 @@ function append_trash_item_to_DOM(item_id, item_title, item_type) {
     new_item.innerHTML = `<p class="trash-item-name">${item_title}</p>
                             <p class="trash-item-category">${item_type}</p>
                             <button class="trash-item-back-button" id="back-${item_id}" onclick="remove_from_trash_item(${item_id})" value="${item_type}">Back</button>
-                            <button class="trash-item-delete-button">Remove permanently</button>`;
+                            <button class="trash-item-delete-button" id="remove-${item_id}" onclick="remove_that_item(${item_id})" value="${item_type}">Remove permanently</button>`;
 
     const trash_list = document.getElementById("trash-container");
     trash_list.appendChild(new_item);
@@ -89,6 +89,18 @@ function remove_from_trash_item(id) {
     connect_to_server_to_change_trash_items(item_data);
 }
 
+function remove_that_item(id) {
+    let item_type = document.getElementById("remove-" + id).value;
+
+    let item_data = {
+        operation_type: 'remove',
+        item_type: item_type,
+        item_id: id,
+    };
+
+    connect_to_server_to_change_trash_items(item_data);
+}
+
 function connect_to_server_to_change_trash_items(items_data) {
     fetch(`${window.origin}/trash`, {
         method: "POST",
@@ -104,7 +116,7 @@ function connect_to_server_to_change_trash_items(items_data) {
 
                 change_trash_list_inside_DOM(data['trash_items']);
             }
-            else if (items_data.operation_type === 'remove_from_trash') {
+            else if (items_data.operation_type === 'remove_from_trash' || items_data.operation_type === 'remove') {
                 remove_item_div_from_DOM(items_data.item_id);
             }
         }

@@ -78,7 +78,7 @@
                     <p class="trash-item-name">{{ item.title }}</p>
                     <p class="trash-item-category">{{ item.type }}</p>
                     <button class="trash-item-back-button" id="back-{{ item.id }}" onclick="remove_from_trash_item({{ item.id }})" value="{{ item.type }}">Back</button>
-                    <button class="trash-item-delete-button">Remove permanently</button>
+                    <button class="trash-item-delete-button" id="remove-{{ item.id }}" onclick="remove_that_item({{ item.id }})" value="{{ item.type }}">Remove permanently</button>
                 </div>
             {% endfor %}
         </div>

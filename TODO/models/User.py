@@ -2,6 +2,7 @@ from models.Todo import Todo
 from models.Habit import Habit
 import datetime
 
+
 class User:
     def __init__(self, username, password):
         self.username = username
@@ -70,5 +71,12 @@ class User:
     def get_habits_in_trash(self):
         return [habit for habit in self.habits if habit.is_in_trash and not habit.is_removed]
 
+    def remove_todo_permanently(self, todo_id):
+        target_todo = self.get_todo_by_id(todo_id)
+        target_todo.is_removed = True
+
+    def remove_habit_permanently(self, habit_id):
+        target_habit = self.get_habit_by_id(habit_id)
+        target_habit.is_removed = True
 
 

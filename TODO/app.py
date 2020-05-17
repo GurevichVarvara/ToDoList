@@ -166,7 +166,18 @@ def trash():
                                                                                       client_data['item_id'])
 
             response = get_plain_completing_and_deleting_response_to_front(
-                result_of_deleting, 'Something went wrong with changing trash status of that todo')
+                result_of_deleting, 'Something went wrong with changing trash status of that item')
+
+        elif client_data['operation_type'] == 'remove':
+            if client_data['item_type'] == 'Todo':
+                result_of_removing = Database.get_instance().remove_todo_permanently(session['username'],
+                                                                                  client_data['item_id'])
+            else:
+                result_of_removing = Database.get_instance().remove_habit_permanently(session['username'],
+                                                                                     client_data['item_id'])
+
+            response = get_plain_completing_and_deleting_response_to_front(
+                result_of_removing, 'Something went wrong with removing that todo')
 
         return response
 

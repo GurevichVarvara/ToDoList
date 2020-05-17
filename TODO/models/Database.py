@@ -146,6 +146,17 @@ class Database:
 
         return [{'id': id(item), 'title': item.title, 'type': ('Todo' if isinstance(item, Todo) else 'Habit')} for item in sorted_trash_items]
 
+    def remove_todo_permanently(self, username, todo_id):
+        user = self.users[username]
+        user.remove_todo_permanently(todo_id)
+        self._save_to_db()
 
+        return True
 
+    def remove_habit_permanently(self, username, habit_id):
+        user = self.users[username]
+        user.remove_habit_permanently(habit_id)
+        self._save_to_db()
+
+        return True
 

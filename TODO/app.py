@@ -155,12 +155,16 @@ def trash():
                                                                     habits=(client_data['items_type'] == 'all' or client_data['items_type'] == 'habits'),
                                                                     is_recently_added_first=(client_data['sorted_type'] == 'new-old'))
 
-            response = make_response(jsonify({"message": "ok", "trash_items": trash_items}), 200) if trash_items else \
-                        make_response(jsonify({"message": "Something went wrong with changing types of trash items", "trash_items": trash_items}), 200)
+            response = make_response(jsonify({"message": "ok", "trash_items": trash_items}), 200)
 
         elif client_data['operation_type'] == 'remove_from_trash':
-            result_of_deleting = Database.get_instance().change_todo_trash_status(session['username'],
+            if client_data['item_type'] == 'Todo':
+                result_of_deleting = Database.get_instance().change_todo_trash_status(session['username'],
                                                                                   client_data['item_id'])
+            else:
+                result_of_deleting = Database.get_instance().change_habit_trash_status(session['username'],
+                                                                                      client_data['item_id'])
+
             response = get_plain_completing_and_deleting_response_to_front(
                 result_of_deleting, 'Something went wrong with changing trash status of that todo')
 

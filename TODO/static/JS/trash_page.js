@@ -45,7 +45,7 @@ function append_trash_item_to_DOM(item_id, item_title, item_type) {
 
     new_item.innerHTML = `<p class="trash-item-name">${item_title}</p>
                             <p class="trash-item-category">${item_type}</p>
-                            <button class="trash-item-back-button" onclick="remove_from_trash_item(${item_id})">Back</button>
+                            <button class="trash-item-back-button" id="back-${item_id}" onclick="remove_from_trash_item(${item_id})" value="${item_type}">Back</button>
                             <button class="trash-item-delete-button">Remove permanently</button>`;
 
     const trash_list = document.getElementById("trash-container");
@@ -78,8 +78,11 @@ function remove_item_div_from_DOM(id) {
 }
 
 function remove_from_trash_item(id) {
+    let item_type = document.getElementById("back-" + id).value;
+
     let item_data = {
         operation_type: 'remove_from_trash',
+        item_type: item_type,
         item_id: id,
     };
 

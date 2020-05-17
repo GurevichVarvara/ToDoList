@@ -147,6 +147,17 @@ def habits():
 @app.route('/trash', methods=['GET', 'POST'])
 @login_required
 def trash():
+    if request.method == 'POST':
+        client_data = request.get_json()
+        trash_items = Database.get_instance().get_trash_items(session['username'], todos=(client_data['items_type'] == 'all' or client_data['items_type'] == 'todos'),
+                                                                habits=(client_data['items_type'] == 'all' or client_data['items_type'] == 'habits'),
+                                                                is_recently_added_first=(client_data['sorted_type'] == 'new-old'))
+
+        response = make_response(jsonify({"message": "ok", "trash_items": trash_items}), 200) if trash_items else \
+                    make_response(jsonify({"message": "Something went wrong with changing types of trash items", "trash_items": trash_items}), 200)
+
+        return response
+
     trash_items = Database.get_instance().get_trash_items(session['username'])
 
     return render_template('trash.html', trash_items=trash_items)

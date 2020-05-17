@@ -57,5 +57,9 @@ class User:
         target_todo = self.get_todo_by_id(todo_id)
         target_todo.is_in_trash = True
 
+    def move_habit_to_trash(self, habit_id):
+        target_habit = self.get_habit_by_id(habit_id)
+        target_habit.is_in_trash = True
+
 
 

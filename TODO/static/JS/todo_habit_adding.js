@@ -54,7 +54,7 @@ function append_habit_item_to_DOM(habit_id, habit_title, category, periodicity) 
                                 <i class="material-icons">done_outline</i>
                             </button>
                                     
-                            <button class="habit-delete-button">
+                            <button class="habit-delete-button" onclick="delete_habit(${habit_id})">
                                 <i class="material-icons">delete</i>
                             </button>`;
 

@@ -132,6 +132,11 @@ def habits():
             habit_left_days = Database.get_instance().get_habit_left_days_by_id(session['username'], client_data['item_id'])
             response = make_response(jsonify({"message": "ok", "habit_left_days": habit_left_days}), 200) if result_of_completing else make_response(jsonify({"message": "Something went wrong with completing that habit"}), 400)
 
+        elif client_data['operation_type'] == 'delete':
+            result_of_deleting = Database.get_instance().move_habit_to_trash(session['username'], client_data['item_id'])
+            response = get_plain_completing_and_deleting_response_to_front(
+                result_of_deleting, 'Something went wrong with moving to trash that habit')
+
         return response
 
     all_active_habits = Database.get_instance().get_all_users_habits_json(session['username'])

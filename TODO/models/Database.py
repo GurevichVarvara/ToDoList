@@ -127,6 +127,13 @@ class Database:
 
         return True
 
+    def move_habit_to_trash(self, username, habit_id):
+        user = self.users[username]
+        user.move_habit_to_trash(habit_id)
+        self._save_to_db()
+
+        return True
+
 
 
 

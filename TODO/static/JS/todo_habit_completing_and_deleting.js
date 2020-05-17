@@ -45,6 +45,10 @@ function delete_todo(id) {
     delete_item(`${window.origin}/`, id);
 }
 
+function delete_habit(id) {
+    delete_item(`${window.origin}/habits`, id);
+}
+
 function connect_to_server_to_complete_delete(url, item_data) {
     fetch(url, {
         method: "POST",

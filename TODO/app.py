@@ -10,6 +10,11 @@ PERMANENT_SESSION_LIFETIME = 1800
 app.config.update(SECRET_KEY=os.urandom(24))
 
 
+@app.route('/')
+def todo():
+    return render_template('index.html')
+
+
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -19,8 +24,7 @@ def login_required(f):
     return wrap
 
 
-@app.route('/', methods=['GET', 'POST'])
-@login_required
+@app.route('/todo', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         client_data = request.get_json()
@@ -43,7 +47,8 @@ def index():
 
     all_active_todos = Database.get_instance().get_all_users_todos_json(session['username'])
 
-    return render_template('todos.html', all_active_todos=all_active_todos)
+    return render_template("todos.html", all_active_todos=all_active_todos)
+    #return make_response(jsonify({"message": "ok", "todos": all_active_todos}), 200)
 
 
 def get_adding_item_response_to_front(response_from_db):

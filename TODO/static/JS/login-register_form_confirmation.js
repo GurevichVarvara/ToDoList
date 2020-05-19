@@ -1,16 +1,29 @@
-window.onload=function() {
-    var login_form = document.querySelector('#login-form.login-form');
-    var registration_form = document.querySelector('#registration-form.login-form');
+export function render_login_page() {
+    let content = `<form class="login-form" id="login-form">
+        <div class="error-message-container" id="error-message-container">
+            <p id="error-message">hello</p>
+        </div>
 
-    if (login_form) {
-        login_form.addEventListener('submit', confirm_login_form);
-    }
+        <div class="username_field">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+        </div>
 
-    if (registration_form) {
-        registration_form.addEventListener('submit', confirm_register_form);
-    }
+        <div class="password_field">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+            
+        <input class="button_to_submit" type="submit" value="Log in">
+    </form>`;
+
+    return content;
 }
 
+export function after_rendering_login_page() {
+    let login_form = document.getElementById('login-form');
+    login_form.addEventListener('submit', confirm_login_form);
+}
 
 let check_username_length = (username) => { return username.length < 15; };
 

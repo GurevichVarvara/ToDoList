@@ -1,14 +1,51 @@
-window.onload=function() {
-    let add_todo_form = document.querySelector('#todo.add_item_form');
-    let add_habit_form = document.querySelector('#habit.add_item_form');
+export async function fill_page_by_todos() {
+    //let todo_list = get_todo_list();
 
-    if (add_todo_form) {
-        add_todo_form.addEventListener('submit', add_todo);
-    }
+    let content = `<button class="add_todo_button" id="up" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>
 
-    if (add_habit_form) {
-        add_habit_form.addEventListener('submit', add_habit);
-    }
+        <div class="todo-container">
+            <div class="todo-title" id="important">
+                <p>Important</p>
+            </div>
+            <div class="todo-title" id="not-important">
+                <p>Not Important</p>
+            </div>
+            <div class="todo-title" id="urgent">
+                <p>Urgent</p>
+            </div>
+            <div class="todo-title" id="not-urgent">
+                <p>Not Urgent</p>
+            </div>
+
+            <div class="todo-title-phone" id="important-urgent">
+                <p>Important, Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="not-important-urgent">
+                <p>Not Important, Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="important-not-urgent">
+                <p>Important, Not Urgent</p>
+            </div>
+            <div class="todo-title-phone" id="not-important-not-urgent">
+                <p>Not Important, Not Urgent</p>
+            </div>`;
+
+    return content;
+
+    //document.getElementById('up').addEventListener('click', change_add_item_form_visibility_state('grid'))
+}
+
+let get_todo_list = async () => {
+    const response = await fetch(`${window.origin}/todo`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+
+    const data = await response.json();
+
+    return data['todos'];
 }
 
 function change_add_item_form_visibility_state(state) {
@@ -113,7 +150,7 @@ function add_todo(event) {
         title: todo_title,
         category: category
     };
-    connect_to_server_to_add(`${window.origin}/`, todo_data);
+    connect_to_server_to_add(`${window.origin}/todo`, todo_data);
 }
 
 function add_habit(event) {

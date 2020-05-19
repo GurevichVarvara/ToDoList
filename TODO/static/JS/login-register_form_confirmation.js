@@ -64,7 +64,7 @@ let check_password_length = (password) => { return password.length > 10; };
 
 
 function are_pass_and_confirmation_equal(password, confirmation) {
-    var result = false;
+    let result = false;
 
     if (password === confirmation) {
         result = true;
@@ -110,11 +110,11 @@ function connect_to_server(url, entry) {
 function confirm_login_form(event) {
     event.preventDefault();
 
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
     if (check_username_length(username)) {
-        var entry = {
+        let entry = {
             username: username,
             password: password
         };
@@ -131,13 +131,13 @@ function confirm_login_form(event) {
 function confirm_register_form(event) {
     event.preventDefault();
 
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var confirmation = document.getElementById("password_confirmation").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let confirmation = document.getElementById("password_confirmation").value;
 
     if (check_username_length(username) && check_password_length(password)) {
         if (are_pass_and_confirmation_equal(password, confirmation)) {
-            var entry = {
+            let entry = {
                 username: username,
                 password: password
             };

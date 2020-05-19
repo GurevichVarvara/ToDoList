@@ -32,9 +32,15 @@ const rout = {
 };
 
 const router = async () => {
-    let is_logged_in = await is_user_logged_in();
     let target_url = get_target_path();
 
+    if (target_url === 'logout') {
+        await logout();
+        target_url = 'login';
+    }
+
+    let is_logged_in = await is_user_logged_in();
+    
     const header_container = document.getElementById('header_container');
 
     // redirect user to login page if not logged in
@@ -77,4 +83,13 @@ async function is_user_logged_in() {
     const data = await response.json();
 
     return data['is_logged_in'];
+}
+
+async function logout() {
+    await fetch(`${window.origin}/logout`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
 }

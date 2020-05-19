@@ -20,7 +20,7 @@ const router = async () => {
         alert('logged in');
     }
     else {
-        
+        alert('not logged in');
     }
 
     let target_url = get_target_path();

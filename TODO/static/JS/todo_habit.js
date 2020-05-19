@@ -1,14 +1,13 @@
 export async function render_todo() {
-    let background = document.createElement('div');
-    background.className = "gray_background";
-    background.setAttribute("id", 'gray_background');
-    document.body.appendChild(background);
+    remove_adding_form('habit');
+    create_gray_background_if_not_exits();
 
-    let adding_todo_form = document.createElement('form');
-    adding_todo_form.className = "add_item_form";
-    adding_todo_form.setAttribute("id", 'todo');
+    if (!document.querySelector('#todo.add_item_form')) {
+        let adding_todo_form = document.createElement('form');
+        adding_todo_form.className = "add_item_form";
+        adding_todo_form.setAttribute("id", 'todo');
 
-    adding_todo_form.innerHTML = `<div class="item_name" id="title">
+        adding_todo_form.innerHTML = `<div class="item_name" id="title">
                     <label for="item_title">New Todo Title</label>
                     <input type="text" name="item_title" id="item_title" required>
                 </div>
@@ -30,13 +29,14 @@ export async function render_todo() {
                     <input class="button_to_cancel" id="button_to_cancel" type="button" value="Cancel">
                     <input class="button_to_submit" id="button_to_submit" type="submit" value="Add">
                 </div>`
-    document.body.appendChild(adding_todo_form);
+        document.body.appendChild(adding_todo_form);
 
-    let add_todo_form = document.querySelector('#todo.add_item_form');
-    add_todo_form.addEventListener('submit', add_todo);
+        let add_todo_form = document.querySelector('#todo.add_item_form');
+        add_todo_form.addEventListener('submit', add_todo);
 
-    let button_to_cancel_adding_todo = document.getElementById("button_to_cancel");
-    button_to_cancel_adding_todo.addEventListener('click', finish_work_with_add_todo_form);
+        let button_to_cancel_adding_todo = document.getElementById("button_to_cancel");
+        button_to_cancel_adding_todo.addEventListener('click', finish_work_with_add_todo_form);
+    }
 
     let content = `<button class="add_todo_button" id="up">Add Todo</button>
 
@@ -94,23 +94,107 @@ export function after_rendering_todo() {
     let down_adding_todo_button = document.getElementById('down');
     down_adding_todo_button.addEventListener('click', function(){ change_add_item_form_visibility_state('grid'); }, false);
 
-    get_todo_list();
+    get_item_list(`${window.origin}/todo`, 'todos');
 }
 
-function get_todo_list() {
-    fetch(`${window.origin}/todo`, {
+export async function render_habits() {
+    remove_adding_form('todo');
+    create_gray_background_if_not_exits();
+
+    if (!document.querySelector('#habit.add_item_form')) {
+        let adding_habit_form = document.createElement('form');
+        adding_habit_form.className = "add_item_form";
+        adding_habit_form.setAttribute("id", 'habit');
+
+        adding_habit_form.innerHTML = `<div class="item_name" id="title">
+            <label for="item_title">New Habit Title</label>
+            <input type="text" name="item_title" id="item_title" required>
+        </div>
+
+        <div class="item_name" id="periodicity">
+            <label for="item_days">Chill time, days</label>
+            <input type="number" name="item_title" id="item_days" required>
+        </div>
+
+        <div class="todo_category_select_form">
+            <div>
+                <input type="radio" id="category_of_habit_easy"
+                         name="category_of_habit" value="easy" checked>
+                <label for="category_of_habit_easy">Easy</label>
+            </div>
+            <div>
+                <input type="radio" id="category_of_habit_medium"
+                         name="category_of_habit" value="medium">
+                <label for="category_of_habit_medium">Medium</label>
+            </div>
+            <div>
+                <input type="radio" id="category_of_habit_hard"
+                         name="category_of_habit" value="hard">
+                <label for="category_of_habit_hard">Hard</label>
+            </div>
+        </div>
+
+        <div class="add_item_buttons">
+            <input class="button_to_cancel" id="button_to_cancel" type="button" value="Cancel">
+            <input class="button_to_submit" id="button_to_submit" type="submit" value="Add">
+        </div>`;
+        document.body.appendChild(adding_habit_form);
+
+        let add_habit_form = document.querySelector('#habit.add_item_form');
+        add_habit_form.addEventListener('submit', add_habit);
+
+        let button_to_cancel_adding_habit = document.getElementById("button_to_cancel");
+        button_to_cancel_adding_habit.addEventListener('click', finish_work_with_add_habit_form);
+    }
+
+    let content = `<button class="add_todo_button" id="add_habit">Add Habit</button>
+        <div class="habits-container"></div>`;
+
+    return content;
+}
+
+export function after_rendering_habits() {
+    let adding_habit_button = document.getElementById('add_habit');
+    adding_habit_button.addEventListener('click', function () { change_add_item_form_visibility_state('grid'); }, false);
+
+
+    get_item_list(`${window.origin}/habits`, 'habits');
+}
+
+function get_item_list(url, type) {
+    fetch(url, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         }
     }).then(response => response.json()).then(function (data) {
-        let todo_list = data['todos'];
-        console.log(todo_list);
+        let item_list = data[type];
 
-        for (let i = 0; i < todo_list.length; i++) {
-            append_todo_item_to_DOM(todo_list[i].id, todo_list[i].title, todo_list[i].category, todo_list[i].completed)
+        for (let i = 0; i < item_list.length; i++) {
+            if (type === 'todos') {
+                append_todo_item_to_DOM(item_list[i].id, item_list[i].title, item_list[i].category, item_list[i].completed);
+            }
+            else {
+                append_habit_item_to_DOM(item_list[i].id, item_list[i].title, item_list[i].category, item_list[i].days_left, item_list[i].completed);
+            }
         }
     })
+}
+
+function remove_adding_form(type) {
+    let adding_item_form = document.querySelector('#' + type + '.add_item_form');
+    if(adding_item_form) {
+        adding_item_form.parentNode.removeChild(adding_item_form);
+    }
+}
+
+function create_gray_background_if_not_exits() {
+    if (!document.getElementById('gray_background')) {
+        let background = document.createElement('div');
+        background.className = "gray_background";
+        background.setAttribute("id", 'gray_background');
+        document.body.appendChild(background);
+    }
 }
 
 function change_add_item_form_visibility_state(state) {
@@ -155,9 +239,16 @@ function append_todo_item_to_DOM(todo_id, todo_title, category, completon_status
     delete_button.addEventListener('click', function(){ delete_todo(todo_id); }, false);
 }
 
-function append_habit_item_to_DOM(habit_id, habit_title, category, periodicity) {
+function append_habit_item_to_DOM(habit_id, habit_title, category, periodicity, completon_status=false) {
     let new_habit = document.createElement('div');
-    new_habit.className = "habit";
+
+    if (completon_status) {
+        new_habit.className = "completed-habit";
+    }
+    else {
+        new_habit.className = "habit";
+    }
+
     new_habit.setAttribute("id", habit_id);
 
     new_habit.innerHTML = `<p class="habit-title">${habit_title}</p>
@@ -170,16 +261,22 @@ function append_habit_item_to_DOM(habit_id, habit_title, category, periodicity) 
                                 <p id="habit_days_left-${habit_id}">You can take a break from this task for ${periodicity} days</p>
                             </div>
             
-                            <button class="habit-done-button" onclick="complete_habit(${habit_id})">
+                            <button class="habit-done-button" id="complete-button-${habit_id}">
                                 <i class="material-icons">done_outline</i>
                             </button>
                                     
-                            <button class="habit-delete-button" onclick="delete_habit(${habit_id})">
+                            <button class="habit-delete-button" id="delete-button-${habit_id}">
                                 <i class="material-icons">delete</i>
                             </button>`;
 
     const habit_container = document.getElementsByClassName("habits-container")[0];
     habit_container.appendChild(new_habit);
+
+    let complete_button = document.getElementById("complete-button-" + habit_id);
+    complete_button.addEventListener('click', function(){ complete_habit(habit_id); }, false);
+
+    let delete_button = document.getElementById("delete-button-" + habit_id);
+    delete_button.addEventListener('click', function(){ delete_habit(habit_id); }, false);
 }
 
 function get_item_title() {

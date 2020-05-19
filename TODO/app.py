@@ -20,15 +20,6 @@ def is_user_logged_in():
     return make_response(jsonify({"message": "ok", "is_logged_in": ('logged_in' in session.keys())}), 200)
 
 
-def login_required(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' not in session:
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return wrap
-
-
 @app.route('/todo', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -87,8 +78,6 @@ def register():
 
         return get_login_response_to_front(response_from_db)
 
-    return render_template('register.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -101,8 +90,6 @@ def login():
         response_from_db = Database.get_instance().if_user_exists(entry['username'], entry['password'])
 
         return get_login_response_to_front(response_from_db)
-
-    return render_template('login.html')
 
 
 @app.route('/logout')
@@ -127,7 +114,6 @@ def get_login_response_to_front(response_from_db):
 
 
 @app.route('/habits', methods=['GET', 'POST'])
-@login_required
 def habits():
     if request.method == 'POST':
         client_data = request.get_json()
@@ -150,11 +136,10 @@ def habits():
 
     all_active_habits = Database.get_instance().get_all_users_habits_json(session['username'])
 
-    return render_template('habits.html', all_active_habits=all_active_habits)
+    return make_response(jsonify({"message": "ok", "habits": all_active_habits}), 200)
 
 
 @app.route('/trash', methods=['GET', 'POST'])
-@login_required
 def trash():
     if request.method == 'POST':
         client_data = request.get_json()

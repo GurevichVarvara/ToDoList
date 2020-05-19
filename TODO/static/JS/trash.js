@@ -1,10 +1,62 @@
 let current_items_type;
 
-window.onload=function() {
+export async function render_trash() {
+    let content = `<form class="select_trash_item_type_form" id="select_trash_item_type_form">
+            <p>Please select what you category want to display</p>
+            <div class="part_item_type_of_select_form">
+                <div id="todos_section"> 
+                    <input type="checkbox" id="category_of_items_todos"
+                     name="type_of_items" value="todos">
+                    <label for="category_of_items_todos">Todo's</label>
+                </div>
+
+                <div id="habits_section">
+                    <input type="checkbox" id="category_of_items_habits"
+                     name="type_of_items" value="habits">
+                    <label for="category_of_items_habits">Habits</label>
+                </div>
+
+                <div id="all_section">
+                    <input type="checkbox" id="category_of_items_all"
+                     name="type_of_items" value="all" checked>
+                    <label for="category_of_items_all">All</label>
+                </div>
+            </div>
+
+            <p>Please select the sorting method</p>
+            <div class="part_date_of_select_form">
+                <div id="new-old_section">
+                    <input type="radio" id="sorting_method_1"
+                     name="sorting_methods" value="new-old" checked>
+                    <label for="sorting_method_1">Recently added first</label>
+                </div>
+
+                <div id="old-new_section">
+                    <input type="radio" id="sorting_method_2"
+                     name="sorting_methods" value="old-new">
+                    <label for="sorting_method_2">Old first</label>
+                </div>
+            </div>
+
+            <input class="button_to_submit" type="submit" value="Show">
+        </form>
+
+        <div class="trash-container" id="trash-container"></div>`;
+
+    return content;
+}
+
+export function after_rendering_trash() {
     let select_trash_item_type_form = document.getElementById("select_trash_item_type_form");
     select_trash_item_type_form.addEventListener('submit', change_trash_list);
 
     current_items_type = { type: "all", sorted_method: "new-old" };
+
+    connect_to_server_to_change_trash_items({
+        operation_type: 'change_type',
+        items_type: "all",
+        sorted_type: 'new-old'
+    });
 }
 
 function change_trash_list(event) {
@@ -45,11 +97,17 @@ function append_trash_item_to_DOM(item_id, item_title, item_type) {
 
     new_item.innerHTML = `<p class="trash-item-name">${item_title}</p>
                             <p class="trash-item-category">${item_type}</p>
-                            <button class="trash-item-back-button" id="back-${item_id}" onclick="remove_from_trash_item(${item_id})" value="${item_type}">Back</button>
-                            <button class="trash-item-delete-button" id="remove-${item_id}" onclick="remove_that_item(${item_id})" value="${item_type}">Remove permanently</button>`;
+                            <button class="trash-item-back-button" id="back-${item_id}" value="${item_type}">Back</button>
+                            <button class="trash-item-delete-button" id="remove-${item_id}" value="${item_type}">Remove permanently</button>`;
 
     const trash_list = document.getElementById("trash-container");
     trash_list.appendChild(new_item);
+
+    let back_button = document.getElementById('back-' + item_id);
+    back_button.addEventListener('click', function () { remove_from_trash_item(item_id) });
+
+    let remove_button = document.getElementById("remove-" + item_id);
+    remove_button.addEventListener('click', function () { remove_that_item(item_id) });
 }
 
 function recreate_trash_container() {
@@ -60,7 +118,7 @@ function recreate_trash_container() {
     trash_list.className = "trash-container";
     trash_list.setAttribute("id", "trash-container");
 
-    const main = document.getElementById("main");
+    const main = document.getElementById("main_container");
     main.appendChild(trash_list);
 }
 

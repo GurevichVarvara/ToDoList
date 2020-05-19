@@ -2,8 +2,9 @@
 
 import {render_todo, after_rendering_todo,
         render_habits, after_rendering_habits} from './todo_habit.js'
+import {render_trash, after_rendering_trash} from "./trash.js";
 import {render_login_page, after_rendering_login_page,
-        render_registration_page, after_rendering_registration_page} from "./login-register_form_confirmation.js";
+        render_registration_page, after_rendering_registration_page} from "./login-register_form.js";
 import {render_login_navbar, after_rendering_login_navbar,
         render_main_navbar, after_rendering_main_navbar} from "./navbar.js";
 
@@ -15,6 +16,10 @@ const rout = {
     'habits': {
         render: render_habits,
         after_rendering: after_rendering_habits
+    },
+    'trash' : {
+        render: render_trash,
+        after_rendering: after_rendering_trash
     },
     'login': {
         render: render_login_page,

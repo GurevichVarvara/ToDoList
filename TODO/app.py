@@ -175,10 +175,6 @@ def trash():
 
         return response
 
-    trash_items = Database.get_instance().get_trash_items(session['username'])
-
-    return render_template('trash.html', trash_items=trash_items)
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8000)

@@ -52,8 +52,7 @@ def index():
 
     all_active_todos = Database.get_instance().get_all_users_todos_json(session['username'])
 
-    return render_template("todos.html", all_active_todos=all_active_todos)
-    #return make_response(jsonify({"message": "ok", "todos": all_active_todos}), 200)
+    return make_response(jsonify({"message": "ok", "todos": all_active_todos}), 200)
 
 
 def get_adding_item_response_to_front(response_from_db):

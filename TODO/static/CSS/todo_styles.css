@@ -6,9 +6,7 @@ main {
 
 
 .todo-container {
-	margin-bottom: 40px;
-	margin-right: 10%;
-	margin-left: 10%;
+    margin: 25px;
 	display: grid;
 	grid-template-columns: auto 7fr 7fr;
 	background: rgba(221, 76, 14, 0.42);

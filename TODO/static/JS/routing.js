@@ -1,6 +1,6 @@
 "use strict";
 
-import {render_todo, after_rendering_todo} from './todo_habit_adding.js'
+import {render_todo, after_rendering_todo} from './todo_habit.js'
 import {render_login_page, after_rendering_login_page} from "./login-register_form_confirmation.js";
 
 const rout = {

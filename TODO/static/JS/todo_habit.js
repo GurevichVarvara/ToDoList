@@ -1,4 +1,43 @@
 export async function render_todo() {
+    let background = document.createElement('div');
+    background.className = "gray_background";
+    background.setAttribute("id", 'gray_background');
+    document.body.appendChild(background);
+
+    let adding_todo_form = document.createElement('form');
+    adding_todo_form.className = "add_item_form";
+    adding_todo_form.setAttribute("id", 'todo');
+
+    adding_todo_form.innerHTML = `<div class="item_name" id="title">
+                    <label for="item_title">New Todo Title</label>
+                    <input type="text" name="item_title" id="item_title" required>
+                </div>
+        
+                <div class="todo_category_select_form">
+                    <div>
+                        <input type="checkbox" id="category_of_todo_1"
+                                 name="category_of_todo" value="important">
+                        <label for="category_of_todo_1">Important</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="category_of_todo_2"
+                                 name="category_of_todo" value="urgent">
+                        <label for="category_of_todo_2">Urgent</label>
+                    </div>
+                </div>
+        
+                <div class="add_item_buttons">
+                    <input class="button_to_cancel" id="button_to_cancel" type="button" value="Cancel">
+                    <input class="button_to_submit" id="button_to_submit" type="submit" value="Add">
+                </div>`
+    document.body.appendChild(adding_todo_form);
+
+    let add_todo_form = document.querySelector('#todo.add_item_form');
+    add_todo_form.addEventListener('submit', add_todo);
+
+    let button_to_cancel_adding_todo = document.getElementById("button_to_cancel");
+    button_to_cancel_adding_todo.addEventListener('click', finish_work_with_add_todo_form);
+
     let content = `<button class="add_todo_button" id="up">Add Todo</button>
 
         <div class="todo-container">
@@ -50,47 +89,70 @@ export async function render_todo() {
 
 export function after_rendering_todo() {
     let upper_adding_todo_button = document.getElementById('up');
-    upper_adding_todo_button.addEventListener('click', change_add_item_form_visibility_state('grid'));
+    upper_adding_todo_button.addEventListener('click', function(){ change_add_item_form_visibility_state('grid'); }, false);
 
     let down_adding_todo_button = document.getElementById('down');
-    down_adding_todo_button.addEventListener('click', change_add_item_form_visibility_state('grid'));
+    down_adding_todo_button.addEventListener('click', function(){ change_add_item_form_visibility_state('grid'); }, false);
+
+    get_todo_list();
 }
 
-let get_todo_list = async () => {
-    const response = await fetch(`${window.origin}/todo`, {
+function get_todo_list() {
+    fetch(`${window.origin}/todo`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         }
-    });
+    }).then(response => response.json()).then(function (data) {
+        let todo_list = data['todos'];
+        console.log(todo_list);
 
-    const data = await response.json();
-
-    return data['todos'];
+        for (let i = 0; i < todo_list.length; i++) {
+            append_todo_item_to_DOM(todo_list[i].id, todo_list[i].title, todo_list[i].category, todo_list[i].completed)
+        }
+    })
 }
 
 function change_add_item_form_visibility_state(state) {
-    document.getElementById("gray_background").style.display = state;
-    document.getElementsByClassName("add_item_form")[0].style.display = state;
+    let background = document.getElementById("gray_background");
+    let adding_todo_form = document.getElementsByClassName("add_item_form")[0];
+
+    if (background && adding_todo_form) {
+        background.style.display = state;
+        adding_todo_form.style.display = state;
+    }
 }
 
-function append_todo_item_to_DOM(todo_id, todo_title, category) {
+function append_todo_item_to_DOM(todo_id, todo_title, category, completon_status=false) {
     let new_todo = document.createElement('li');
-    new_todo.className = "todo-item";
+
+    if (completon_status) {
+        new_todo.className = "complited-todo-item";
+    }
+    else {
+        new_todo.className = "todo-item";
+    }
+
     new_todo.setAttribute("id", todo_id);
 
     new_todo.innerHTML = `<p class="todo-item-title">${todo_title}</p>
                           <div class="todo-item__controls">
-                            <button class="todo-item-button todo-item-button--done" onclick="complete_todo(${todo_id})">
+                            <button class="todo-item-button todo-item-button--done" id="complete-button-${todo_id}">
                               <i class="material-icons">done_outline</i>
                             </button>
-                            <button class="todo-item-button todo-item-button--delete" onclick="delete_todo(${todo_id})">
+                            <button class="todo-item-button todo-item-button--delete" id="delete-button-${todo_id}">
                               <i class="material-icons">delete</i>
                             </button>
                           </div>`;
 
     const todo_container = document.querySelector("." + category + "-list");
     todo_container.appendChild(new_todo);
+
+    let complete_button = document.getElementById("complete-button-" + todo_id);
+    complete_button.addEventListener('click', function(){ complete_todo(todo_id); }, false);
+
+    let delete_button = document.getElementById("delete-button-" + todo_id);
+    delete_button.addEventListener('click', function(){ delete_todo(todo_id); }, false);
 }
 
 function append_habit_item_to_DOM(habit_id, habit_title, category, periodicity) {
@@ -219,4 +281,81 @@ function finish_work_with_add_habit_form()  {
     set_default_habit_category();
 
     change_add_item_form_visibility_state('none');
+}
+
+function complete_item(url, id, item_type, name_of_completed_div_class) {
+    let item_data = {
+        item_type: item_type,
+        operation_type: 'complete',
+        item_id: id,
+        name_of_completed_div_class: name_of_completed_div_class
+    };
+
+    connect_to_server_to_complete_delete(url, item_data);
+}
+
+function change_item_div_to_completed(id, name_of_completed_class) {
+    let item = document.getElementById(`${id}`);
+    item.className = name_of_completed_class;
+}
+
+function change_completion_state_of_habit(id, days_left) {
+    let days_left_text = document.getElementById(`habit_days_left-${id}`);
+    days_left_text.innerHTML = `You can take a break from this task for ${days_left} days`;
+}
+
+export function complete_todo(id) {
+    complete_item(`${window.origin}/todo`, id, "todo", "complited-todo-item");
+}
+
+function complete_habit(id) {
+    complete_item(`${window.origin}/habits`, id, "habit", "completed-habit");
+}
+
+function remove_item_div_from_DOM(id) {
+    let item_div = document.getElementById(id);
+    item_div.parentNode.removeChild(item_div);
+}
+
+function delete_item(url, id) {
+    let item_data = {
+        operation_type: 'delete',
+        item_id: id,
+    };
+
+    connect_to_server_to_complete_delete(url, item_data);
+}
+
+export function delete_todo(id) {
+    delete_item(`${window.origin}/todo`, id);
+}
+
+function delete_habit(id) {
+    delete_item(`${window.origin}/habits`, id);
+}
+
+function connect_to_server_to_complete_delete(url, item_data) {
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(item_data)
+    }).then(response => response.json()).then(function (data) {
+        if (data['message'] === 'ok') {
+            if (item_data.operation_type === "complete") {
+                if (item_data.item_type === "habit") {
+                    change_completion_state_of_habit(item_data.item_id, data['habit_left_days']);
+                }
+
+                change_item_div_to_completed(item_data.item_id, item_data.name_of_completed_div_class);
+            }
+            if (item_data.operation_type === "delete") {
+                remove_item_div_from_DOM(item_data.item_id);
+            }
+        }
+        else {
+            alert(data['message']);
+        }
+    });
 }

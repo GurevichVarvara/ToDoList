@@ -74,6 +74,7 @@ body {
 }
 
 .gray_background {
+	display: none;
 	background: rgba(1,1,1,0.7);
 	position: fixed;
 	left: 0;
@@ -81,7 +82,6 @@ body {
 	top: 0;
 	bottom: 0;
 	z-index: 2;
-	display: none;
 }
 
 .button_to_submit, .button_to_cancel {
@@ -97,7 +97,6 @@ body {
 }
 
 .add_item_form {
-    /*display: grid;*/
 	display: none;
 	position: fixed;
 	left: 0;

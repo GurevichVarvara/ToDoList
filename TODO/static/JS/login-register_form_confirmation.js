@@ -25,6 +25,38 @@ export function after_rendering_login_page() {
     login_form.addEventListener('submit', confirm_login_form);
 }
 
+export function render_registration_page() {
+    let content = `<form class="login-form" id="registration-form">
+        <div class="error-message-container" id="error-message-container">
+            <p id="error-message">hello</p>
+        </div>
+
+        <div class="username_field">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+
+        <div class="password_field">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+
+        <div class="password_field">
+            <label for="password_confirmation">Confirmation</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" required>
+        </div>
+
+        <input class="button_to_submit" type="submit" value="Sign up">
+    </form>`;
+
+    return content;
+}
+
+export function after_rendering_registration_page() {
+    let registration_form = document.getElementById('registration-form');
+    registration_form.addEventListener('submit', confirm_register_form);
+}
+
 let check_username_length = (username) => { return username.length < 15; };
 
 

@@ -1,7 +1,8 @@
 "use strict";
 
 import {render_todo, after_rendering_todo} from './todo_habit.js'
-import {render_login_page, after_rendering_login_page} from "./login-register_form_confirmation.js";
+import {render_login_page, after_rendering_login_page,
+        render_registration_page, after_rendering_registration_page} from "./login-register_form_confirmation.js";
 
 const rout = {
     'todo': {
@@ -11,21 +12,22 @@ const rout = {
     'login': {
         render: render_login_page,
         after_rendering: after_rendering_login_page
+    },
+    'register': {
+        render: render_registration_page,
+        after_rendering: after_rendering_registration_page
     }
 };
 
 const router = async () => {
     let is_logged_in = await is_user_logged_in();
-    if (is_logged_in) {
-        alert('logged in');
-    }
-    else {
-        alert('not logged in');
-    }
-
     let target_url = get_target_path();
-
     let init_function = rout[target_url];
+
+    if (!is_logged_in) {
+
+    }
+
     const content = await init_function.render();
 
     const main_container = document.getElementById("main_container");

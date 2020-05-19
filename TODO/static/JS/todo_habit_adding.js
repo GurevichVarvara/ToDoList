@@ -1,7 +1,5 @@
-export async function fill_page_by_todos() {
-    //let todo_list = get_todo_list();
-
-    let content = `<button class="add_todo_button" id="up" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>
+export async function render_todo() {
+    let content = `<button class="add_todo_button" id="up">Add Todo</button>
 
         <div class="todo-container">
             <div class="todo-title" id="important">
@@ -28,11 +26,34 @@ export async function fill_page_by_todos() {
             </div>
             <div class="todo-title-phone" id="not-important-not-urgent">
                 <p>Not Important, Not Urgent</p>
-            </div>`;
+            </div>
+
+            <section class="todo-category" id='important-urgent'>
+                <ol class='important-urgent-list'></ol>
+            </section>
+            <section class="todo-category" id='not-important-urgent'>
+                <ol class='not-important-urgent-list'></ol>
+            </section>
+            <section class="todo-category" id='important-not-urgent'>
+                <ol class='important-not-urgent-list'></ol>
+            </section>
+            <section class="todo-category" id='not-important-not-urgent'>
+                <ol class='not-important-not-urgent-list'></ol>
+            </section>
+
+        </div>
+
+    <button class="add_todo_button" id="down">Add Todo</button>`;
 
     return content;
+}
 
-    //document.getElementById('up').addEventListener('click', change_add_item_form_visibility_state('grid'))
+export function after_rendering_todo() {
+    let upper_adding_todo_button = document.getElementById('up');
+    upper_adding_todo_button.addEventListener('click', change_add_item_form_visibility_state('grid'));
+
+    let down_adding_todo_button = document.getElementById('down');
+    down_adding_todo_button.addEventListener('click', change_add_item_form_visibility_state('grid'));
 }
 
 let get_todo_list = async () => {

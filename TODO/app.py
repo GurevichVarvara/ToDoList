@@ -15,6 +15,11 @@ def todo():
     return render_template('index.html')
 
 
+@app.route('/is_logged_in')
+def is_user_logged_in():
+    return make_response(jsonify({"message": "ok", "is_logged_in": ('logged_in' in session.keys())}), 200)
+
+
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):

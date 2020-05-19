@@ -1,12 +1,12 @@
 "use strict";
 
-import {fill_page_by_todos} from './todo_habit_adding.js'
+import {render_todo, after_rendering_todo} from './todo_habit_adding.js'
 import {render_login_page, after_rendering_login_page} from "./login-register_form_confirmation.js";
 
 const rout = {
     'todo': {
-        render: fill_page_by_todos,
-        after_rendering: 1
+        render: render_todo,
+        after_rendering: after_rendering_todo
     },
     'login': {
         render: render_login_page,
@@ -15,6 +15,14 @@ const rout = {
 };
 
 const router = async () => {
+    let is_logged_in = await is_user_logged_in();
+    if (is_logged_in) {
+        alert('logged in');
+    }
+    else {
+        
+    }
+
     let target_url = get_target_path();
 
     let init_function = rout[target_url];
@@ -31,4 +39,17 @@ window.addEventListener('hashchange', router);
 
 function get_target_path() {
     return window.location.href.split('/').pop();
+}
+
+async function is_user_logged_in() {
+    const response = await fetch(`${window.origin}/is_logged_in`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    });
+
+    const data = await response.json();
+
+    return data['is_logged_in'];
 }

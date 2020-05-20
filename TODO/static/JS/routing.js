@@ -40,7 +40,7 @@ const router = async () => {
     }
 
     let is_logged_in = await is_user_logged_in();
-    
+
     const header_container = document.getElementById('header_container');
 
     // redirect user to login page if not logged in

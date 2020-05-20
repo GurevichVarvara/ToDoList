@@ -80,7 +80,7 @@ main {
 }
 
 .todo-item-button--done > i:hover {
-	color: rgba(5, 75, 33, 1);
+	color: rgb(5, 75, 33);
 }
 
 .todo-item-button--delete > i:hover {

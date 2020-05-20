@@ -64,13 +64,7 @@ let check_password_length = (password) => { return password.length > 10; };
 
 
 function are_pass_and_confirmation_equal(password, confirmation) {
-    let result = false;
-
-    if (password === confirmation) {
-        result = true;
-    }
-
-    return result;
+    return password === confirmation;
 }
 
 function set_error_message(error_message) {

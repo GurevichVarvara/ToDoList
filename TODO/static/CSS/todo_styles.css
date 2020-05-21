@@ -6,9 +6,7 @@ main {
 
 
 .todo-container {
-	margin-bottom: 40px;
-	margin-right: 10%;
-	margin-left: 10%;
+    margin: 25px;
 	display: grid;
 	grid-template-columns: auto 7fr 7fr;
 	background: rgba(221, 76, 14, 0.42);
@@ -29,12 +27,12 @@ main {
 }
 
 .todo-item {
-	background: rgba(221, 76, 14);
+	background: rgba(221, 76, 14, 1);
 	opacity: 0.9;
 }
 
 .complited-todo-item {
-	background: rgba(14, 221, 35);
+	background: rgba(14, 221, 35, 1);
 	opacity: 0.8;
 }
 
@@ -82,7 +80,7 @@ main {
 }
 
 .todo-item-button--done > i:hover {
-	color: rgba(5, 75, 33, 1);
+	color: rgb(5, 75, 33);
 }
 
 .todo-item-button--delete > i:hover {
@@ -104,7 +102,7 @@ main {
 }
 
 #urgent.todo-title, #not-urgent.todo-title {
-	margin-top: 60%;
+	margin-top: 120px;
 }
 
 #important.todo-title {
@@ -170,13 +168,13 @@ main {
 	background: rgba(221, 76, 14, 0.59);
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 17px;
+	font-size: 20px;
+	border: none;
 }
 
 .add_todo_button:hover {
-	padding: 13px;
+	background: rgba(221, 76, 14, 0.8);
 }
-
-
 
 
 @media (max-width: 980px) {

@@ -3,9 +3,7 @@ main {
 }
 
 .habits-container {
-	margin-top: 50px;
-	margin-right: 10%;
-	margin-left: 10%;
+    margin-top: 30px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 }
@@ -31,6 +29,18 @@ main {
 	margin-left: 15%;
 	padding-top: 5%;
 	text-align: center;
+}
+
+.habit > .completed-habit-text {
+    display: none;
+}
+
+.completed-habit > .habit-category {
+    display: none;
+}
+
+.completed-habit > .habit-done-button {
+    display: none;
 }
 
 .habit-title {
@@ -87,6 +97,30 @@ main {
 	color: rgba(88, 10, 10, 1);
 }
 
+.em_form {
+	height: 380px;
+}
+
+#title.item_name {
+	grid-row: 1;
+}
+
+#periodicity.item_name {
+	grid-row: 2;
+}
+
+.add_item_form {
+	height: 500px;
+}
+
+.todo_category_select_form {
+	grid-row: 3;
+}
+
+.add_item_buttons {
+	grid-row: 4;
+}
+
 
 @media (max-width: 980px) {
 	main {
@@ -133,5 +167,9 @@ main {
 
 	.completed-habit-text {
 		font-size: 30px;
+	}
+
+	.add_item_form {
+		height: 800px;
 	}
 }

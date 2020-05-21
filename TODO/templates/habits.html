@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/habits_styles.css') }}">
 
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_adding.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_completing_and_deleting.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -32,72 +34,75 @@
     </header>
 
     <main>
-        <a class="add_todo_button" href="#">Add Habit</a>
+        <button class="add_todo_button" onclick="change_add_item_form_visibility_state('grid')">Add Habit</button>
 
         <div class="habits-container">
-            <div class="habit">
-                <p class="habit-title">very very very very very very very long Task 1</p>
+            {% for habit in all_active_habits %}
+                <div {% if habit.completed %}
+                        class="completed-habit"
+                    {% else %}
+                        class="habit"
+                    {% endif %} id="{{ habit.id }}">
+                    <p class="habit-title">{{ habit.title }}</p>
 
-                <div class="habit-category">
-                    <div class="bg"></div>
-                    <div class="habit-categoty-text">easy</div>
+                    <div class="habit-category">
+                        <div class="bg"></div>
+                        <div class="habit-categoty-text">{{ habit.category }}</div>
+                    </div>
+
+
+                    <div class="completed-habit-text">
+                        <p id="habit_days_left-{{ habit.id }}">You can take a break from this task for {{ habit.days_left }} days</p>
+                    </div>
+
+                    <button class="habit-done-button" onclick="complete_habit({{ habit.id }})">
+                        <i class="material-icons">done_outline</i>
+                    </button>
+
+                    <button class="habit-delete-button" onclick="delete_habit({{ habit.id }})">
+                        <i class="material-icons">delete</i>
+                    </button>
                 </div>
-
-                <button class="habit-done-button">
-                    <i class="material-icons">done_outline</i>
-                </button>
-                        
-                <button class="habit-delete-button">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
-
-            <div class="completed-habit">
-                <p class="habit-title">Task 2</p>
-
-                <div class="completed-habit-text">
-                    <p>You can take a break from this task for two days</p>
-                </div>
-
-                <button class="habit-delete-button">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
-            <div class="habit">
-                <p class="habit-title">Task 3</p>
-
-                <div class="habit-category">
-                    <div class="bg"></div>
-                    <div class="habit-categoty-text">medium</div>
-                </div>
-                
-                <button class="habit-done-button">
-                    <i class="material-icons">done_outline</i>
-                </button>
-                        
-                <button class="habit-delete-button">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
-
-            <div class="habit">
-                <p class="habit-title">Task 4</p>
-
-                <div class="habit-category">
-                    <div class="bg"></div>
-                    <div class="habit-categoty-text">medium</div>
-                </div>
-                
-                <button class="habit-done-button">
-                    <i class="material-icons">done_outline</i>
-                </button>
-                        
-                <button class="habit-delete-button">
-                    <i class="material-icons">delete</i>
-                </button>
-            </div>
+            {% endfor %}
         </div>
     </main>
+
+    <div class="gray_background" id="gray_background"></div>
+
+    <form class="add_item_form" id="habit">
+        <div class="item_name" id="title">
+            <label for="item_title">New Habit Title</label>
+            <input type="text" name="item_title" id="item_title" required>
+        </div>
+
+        <div class="item_name" id="periodicity">
+            <label for="item_days">Chill time, days</label>
+            <input type="number" name="item_title" id="item_days" required>
+        </div>
+
+        <div class="todo_category_select_form">
+            <div>
+                <input type="radio" id="category_of_habit_easy"
+                         name="category_of_habit" value="easy" checked>
+                <label for="category_of_habit_easy">Easy</label>
+            </div>
+            <div>
+                <input type="radio" id="category_of_habit_medium"
+                         name="category_of_habit" value="medium">
+                <label for="category_of_habit_medium">Medium</label>
+            </div>
+            <div>
+                <input type="radio" id="category_of_habit_hard"
+                         name="category_of_habit" value="hard">
+                <label for="category_of_habit_hard">Hard</label>
+            </div>
+        </div>
+
+        <div class="add_item_buttons">
+            <input class="button_to_cancel" id="button_to_cancel" type="button" onclick="finish_work_with_add_habit_form()" value="Cancel">
+            <input class="button_to_submit" id="button_to_submit" type="submit" value="Add">
+        </div>
+    </form>
 
 </body>
 </html>

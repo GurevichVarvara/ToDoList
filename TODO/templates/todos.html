@@ -8,9 +8,13 @@
 
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/global_style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='CSS/todo_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/thash_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/habits_styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/login_register_form.css') }}">
 
-    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/global.js') }}" ></script>
     <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/drop-down_main_menu.js') }}" ></script>
+    <script type = "module" src = "{{ url_for('static', filename = 'JS/todo_habit_adding.js') }}" ></script>
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'JS/todo_habit_completing_and_deleting.js') }}" ></script>
 </head>
 <body>
     <header>
@@ -32,10 +36,9 @@
     </header>
 
     <main id="main_form">
-        <a class="add_todo_button" id="up" href="#">Add Todo</a>
+        <button class="add_todo_button" id="up" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>
 
         <div class="todo-container">
-            
             <div class="todo-title" id="important">
                 <p>Important</p>
             </div>
@@ -62,84 +65,64 @@
                 <p>Not Important, Not Urgent</p>
             </div>
 
-            <section class="todo-category" id="important-urgent">
-                <ol class="important-urgent-list">
-                    <li class="todo-item">
-                      <p class="todo-item-title">very very very very very very very very very very very very very very long Todo 1</p>
-                      <div class="todo-item__controls">
-                        <button class="todo-item-button todo-item-button--done">
-                          <i class="material-icons">done_outline</i>
-                        </button>
-                        <button class="todo-item-button todo-item-button--delete">
-                          <i class="material-icons">delete</i>
-                        </button>
-                      </div>
-                    </li>
+            {% for category in ['important-urgent', 'not-important-urgent', 'important-not-urgent', 'not-important-not-urgent'] %}
+                <section class="todo-category" id={{ category }}>
+                    <ol class={{ category + '-list' }}>
+                        {% for todo in all_active_todos %}
+                            {% if todo.category == category %}
+                                <div {% if todo.completed %}
+                                        class="complited-todo-item"
+                                     {% else %}
+                                        class="todo-item"
+                                     {% endif %} id="{{ todo.id }}">
 
-                    <li class="complited-todo-item">
-                      <p class="todo-item-title">Completed todo</p>
-                      <div class="todo-item__controls">
-                        <button class="todo-item-button todo-item-button--done">
-                          <i class="material-icons">done_outline</i>
-                        </button>
-                        <button class="todo-item-button todo-item-button--delete">
-                          <i class="material-icons">delete</i>
-                        </button>
-                      </div>
-                    </li>
+                                    <p class="todo-item-title">{{ todo.title }}</p>
+                                    <div class="todo-item__controls">
+                                        <button class="todo-item-button todo-item-button--done" onclick="complete_todo({{ todo.id }})">
+                                            <i class="material-icons">done_outline</i>
+                                        </button>
+                                        <button class="todo-item-button todo-item-button--delete" onclick="delete_todo({{ todo.id }})">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                </section>
+            {% endfor %}
 
-                    <li class="todo-item">
-                      <p class="todo-item-title">Todo 2</p>
-                      <div class="todo-item__controls">
-                        <button class="todo-item-button todo-item-button--done">
-                          <i class="material-icons">done_outline</i>
-                        </button>
-                        <button class="todo-item-button todo-item-button--delete">
-                          <i class="material-icons">delete</i>
-                        </button>
-                      </div>
-                    </li>
 
-                    <li class="todo-item">
-                      <p class="todo-item-title">Todo 5</p>
-                      <div class="todo-item__controls">
-                        <button class="todo-item-button todo-item-button--done">
-                          <i class="material-icons">done_outline</i>
-                        </button>
-                        <button class="todo-item-button todo-item-button--delete">
-                          <i class="material-icons">delete</i>
-                        </button>
-                      </div>
-                    </li>
-                </ol>
-            </section>
-
-            <section class="todo-category" id="not-important-urgent">
-                <ol class="not-important-urgent-list"></ol>
-            </section>
-
-            <section class="todo-category" id="important-not-urgent">
-                <ol class="important-not-urgent-list"></ol>
-            </section>
-
-            <section class="todo-category" id="not-important-not-urgent">
-                <ol class="not-important-not-urgent-list">
-                    <li class="todo-item">
-                      <p class="todo-item-title">Todo 4</p>
-                      <div class="todo-item__controls">
-                        <button class="todo-item-button todo-item-button--done">
-                          <i class="material-icons">done_outline</i>
-                        </button>
-                        <button class="todo-item-button todo-item-button--delete">
-                          <i class="material-icons">delete</i>
-                        </button>
-                      </div>
-                    </li>
-                </ol>
-            </section>
         </div>
 
-        <a class="add_todo_button" id="down" href="#">Add Todo</a>
+        <button class="add_todo_button" id="down" onclick="change_add_item_form_visibility_state('grid')">Add Todo</button>
     </main>
+
+    <div class="gray_background" id="gray_background"></div>
+
+    <form class="add_item_form" id="todo">
+        <div class="item_name" id="title">
+            <label for="item_title">New Todo Title</label>
+            <input type="text" name="item_title" id="item_title" required>
+        </div>
+
+        <div class="todo_category_select_form">
+            <div>
+                <input type="checkbox" id="category_of_todo_1"
+                         name="category_of_todo" value="important">
+                <label for="category_of_todo_1">Important</label>
+            </div>
+            <div>
+                <input type="checkbox" id="category_of_todo_2"
+                         name="category_of_todo" value="urgent">
+                <label for="category_of_todo_2">Urgent</label>
+            </div>
+        </div>
+
+        <div class="add_item_buttons">
+            <input class="button_to_cancel" id="button_to_cancel" type="button" onclick="finish_work_with_add_todo_form()" value="Cancel">
+            <input class="button_to_submit" id="button_to_submit" type="submit" value="Add">
+        </div>
+    </form>
 </body>
 </html>
